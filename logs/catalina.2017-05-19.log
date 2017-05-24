@@ -1,0 +1,79 @@
+19-May-2017 11:46:49.871 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.15
+19-May-2017 11:46:49.933 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 5 2017 11:03:04 UTC
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.15.0
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_102\jre
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_102-b14
+19-May-2017 11:46:49.934 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\conf\logging.properties
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+19-May-2017 11:46:49.935 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15
+19-May-2017 11:46:49.936 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15
+19-May-2017 11:46:49.936 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\temp
+19-May-2017 11:46:49.936 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_102\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_102\bin;D:\apache-maven-3.3.9\bin;C:\Program Files\Git\cmd;C:\Go\bin;C:\Program Files\TortoiseHg\;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Users\saurabhrai\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\saurabhrai\AppData\Local\Programs\Python\Python36-32\;C:\Users\saurabhrai\AppData\Roaming\npm:D:\chromedriver.exe;D:\geckodriver.exe;.]
+19-May-2017 11:46:50.737 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+19-May-2017 11:46:51.070 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+19-May-2017 11:46:51.107 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+19-May-2017 11:46:51.110 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+19-May-2017 11:46:51.110 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 2417 ms
+19-May-2017 11:46:51.268 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+19-May-2017 11:46:51.268 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.15
+19-May-2017 11:46:51.316 SEVERE [Catalina-startStop-1] org.apache.catalina.valves.AccessLogValve.open Failed to open access log file [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\logs\localhost_access_log.2017-05-19.txt]
+ java.io.FileNotFoundException: C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\logs\localhost_access_log.2017-05-19.txt (Access is denied)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at org.apache.catalina.valves.AccessLogValve.open(AccessLogValve.java:585)
+	at org.apache.catalina.valves.AccessLogValve.startInternal(AccessLogValve.java:615)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.StandardPipeline.startInternal(StandardPipeline.java:182)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:953)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:872)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1419)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1409)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+19-May-2017 11:46:51.326 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\docs]
+19-May-2017 11:46:52.363 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\docs] has finished in [1,036] ms
+19-May-2017 11:46:52.363 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\examples]
+19-May-2017 11:46:53.206 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\examples] has finished in [842] ms
+19-May-2017 11:46:53.206 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\host-manager]
+19-May-2017 11:46:53.262 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\host-manager] has finished in [56] ms
+19-May-2017 11:46:53.263 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\manager]
+19-May-2017 11:46:53.305 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\manager] has finished in [42] ms
+19-May-2017 11:46:53.305 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\Report]
+19-May-2017 11:46:53.350 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\Report] has finished in [45] ms
+19-May-2017 11:46:53.366 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\ROOT]
+19-May-2017 11:46:53.396 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\saurabhrai\Downloads\apache-tomcat-8.5.15\apache-tomcat-8.5.15\webapps\ROOT] has finished in [46] ms
+19-May-2017 11:46:53.396 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+19-May-2017 11:46:53.396 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+19-May-2017 11:46:53.411 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 2303 ms
+19-May-2017 15:25:22.074 SEVERE [ajp-nio-8009-exec-1] org.apache.coyote.ajp.AjpMessage.processHeader Invalid message received with signature [18245]
+19-May-2017 15:31:32.855 SEVERE [ajp-nio-8009-exec-2] org.apache.coyote.ajp.AjpMessage.processHeader Invalid message received with signature [18245]
+19-May-2017 15:31:42.694 SEVERE [ajp-nio-8009-exec-3] org.apache.coyote.ajp.AjpMessage.processHeader Invalid message received with signature [18245]
+19-May-2017 15:31:45.265 SEVERE [ajp-nio-8009-exec-4] org.apache.coyote.ajp.AjpMessage.processHeader Invalid message received with signature [18501]
+19-May-2017 15:32:23.992 INFO [http-nio-8080-exec-9] org.apache.coyote.http11.Http11Processor.service Error parsing HTTP request header
+ Note: further occurrences of HTTP header parsing errors will be logged at DEBUG level.
+ java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:422)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:683)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1455)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
