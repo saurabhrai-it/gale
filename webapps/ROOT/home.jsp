@@ -71,7 +71,7 @@
 %>
   <div class="jumbotron">
     <div class="container">
-        <h2 class="text-center">RESULTS-LOAD TEST <%=name%>(<%=testTime%> DURATION)</h1>
+        <h2 class="text-center">RESULTS-LOAD TEST <%=name%>(<%=testTime%> Duration)</h1>
     </div>
   </div>
 
