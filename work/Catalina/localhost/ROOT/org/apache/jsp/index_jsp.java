@@ -119,7 +119,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("    <script>\r\n");
       out.write("        var testNumber = prompt(\"Please enter the load test number(eg. 1947)\", \"1947\");\r\n");
-      out.write("        window.location = \"home1.jsp?testNumber=\" + encodeURIComponent(testNumber);\r\n");
+      out.write("        window.location = \"home.jsp?testNumber=\" + encodeURIComponent(testNumber);\r\n");
       out.write("    </script>\r\n");
       out.write("</head>\r\n");
       out.write("</html>");
