@@ -1,0 +1,39 @@
+07-Oct-2017 12:25:16.577 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.15
+07-Oct-2017 12:25:16.688 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 5 2017 11:03:04 UTC
+07-Oct-2017 12:25:16.689 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.15.0
+07-Oct-2017 12:25:16.690 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+07-Oct-2017 12:25:16.690 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+07-Oct-2017 12:25:16.690 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+07-Oct-2017 12:25:16.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk1.8.0_101\jre
+07-Oct-2017 12:25:16.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_101-b13
+07-Oct-2017 12:25:16.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+07-Oct-2017 12:25:16.691 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         U:\ReportDev\GaleUI\gale
+07-Oct-2017 12:25:16.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         U:\ReportDev\GaleUI\gale
+07-Oct-2017 12:25:16.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=U:\ReportDev\GaleUI\gale\conf\logging.properties
+07-Oct-2017 12:25:16.692 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+07-Oct-2017 12:25:16.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+07-Oct-2017 12:25:16.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+07-Oct-2017 12:25:16.693 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=U:\ReportDev\GaleUI\gale
+07-Oct-2017 12:25:16.694 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=U:\ReportDev\GaleUI\gale
+07-Oct-2017 12:25:16.696 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=U:\ReportDev\GaleUI\gale\temp
+07-Oct-2017 12:25:16.696 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_101\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Python36\Scripts\;C:\Program Files\Python36\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;c:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\scala\bin;C:\Program Files\Java\jdk1.8.0_101\bin;U:\apache-maven-3.3.9\bin;C:\Program Files\Git\bin;C:\Users\Saurabh\AppData\Local\Programs\Python\Python36-32\Scripts;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Users\Saurabh\Downloads\junit;U:\apache-maven-3.3.9\bin;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Git\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Saurabh\AppData\Local\Microsoft\WindowsApps;C:\Users\Saurabh\AppData\Roaming\npm;C:\Users\Saurabh\Downloads\junit;;.]
+07-Oct-2017 12:25:18.438 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+07-Oct-2017 12:25:18.943 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+07-Oct-2017 12:25:18.974 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+07-Oct-2017 12:25:18.980 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+07-Oct-2017 12:25:18.980 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 4485 ms
+07-Oct-2017 12:25:19.153 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+07-Oct-2017 12:25:19.153 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.15
+07-Oct-2017 12:25:19.192 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [U:\ReportDev\GaleUI\gale\webapps\docs]
+07-Oct-2017 12:25:20.542 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [U:\ReportDev\GaleUI\gale\webapps\docs] has finished in [1,337] ms
+07-Oct-2017 12:25:20.543 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [U:\ReportDev\GaleUI\gale\webapps\examples]
+07-Oct-2017 12:25:24.270 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [U:\ReportDev\GaleUI\gale\webapps\examples] has finished in [3,727] ms
+07-Oct-2017 12:25:24.272 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [U:\ReportDev\GaleUI\gale\webapps\host-manager]
+07-Oct-2017 12:25:24.337 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [U:\ReportDev\GaleUI\gale\webapps\host-manager] has finished in [65] ms
+07-Oct-2017 12:25:24.338 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [U:\ReportDev\GaleUI\gale\webapps\manager]
+07-Oct-2017 12:25:24.446 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [U:\ReportDev\GaleUI\gale\webapps\manager] has finished in [108] ms
+07-Oct-2017 12:25:24.447 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [U:\ReportDev\GaleUI\gale\webapps\ROOT]
+07-Oct-2017 12:25:24.500 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [U:\ReportDev\GaleUI\gale\webapps\ROOT] has finished in [54] ms
+07-Oct-2017 12:25:24.512 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+07-Oct-2017 12:25:24.516 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+07-Oct-2017 12:25:24.519 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 5538 ms

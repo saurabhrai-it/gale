@@ -10,8 +10,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
+    <![endif]-->
     <script>
     </script>
 </head>
@@ -31,8 +31,9 @@
 <%@ page import="java.io.*" %>
 <%
      //String binDir = System.getProperty("user.dir").toString();
-     String currDir = "..\\webapps\\ROOT";
+     String currDir = "../webapps/ROOT/";
      String name    = request.getParameter("testNumber");
+     String tempFolderLoc = "LoadTestResults_"+name;
      String fullFolderLocation = "";
      String desiredFolder = "";
      File mainFolder = new File(currDir);
@@ -42,7 +43,7 @@
      for(int j=0; j < mainFolders.length;j++)
      {
         fileName = mainFolders[j].getName().toString();
-        if(fileName.startsWith(name.toString()))
+        if(fileName.startsWith(tempFolderLoc.toString()))
           {
             %>File after conditions are :  <%=fileName%><%
             if(fileName.endsWith("28800"))
@@ -62,16 +63,10 @@
      }
      if(errorMsg=="")
      {
-        desiredFolder = name + "_" + testValue;
-        fullFolderLocationAggregate = currDir +"\\"+desiredFolder+"\\AggregateReport";
-        fullFolderLocationResponseTime = currDir +"\\"+desiredFolder+"\\ResponseTime";
-        //fullFolderLocationResponseCode = currDir +"\\"+desiredFolder+"\\ResponseCode";
-        File folderAggregate    = new File(fullFolderLocationAggregate);
-        File folderResponseTime    = new File(fullFolderLocationResponseTime);
-        //File folderResponseCode    = new File(fullFolderLocationResponseCode);
-        File[] listOfFoldersAggregate = folderAggregate.listFiles();
-        File[] listOfFoldersResponseTime = folderResponseTime.listFiles();
-        //File[] listOfFoldersResponseCode = folderResponseCode.listFiles();
+        desiredFolder = tempFolderLoc + "_" + testValue;
+        fullFolderLocation = currDir +"\\"+desiredFolder;
+        File folder    = new File(fullFolderLocation);
+        File[] listOfFolders = folder.listFiles();
 
 %>
   <div class="jumbotron">
@@ -81,19 +76,14 @@
   </div>
 
   <div class="container">
-        <ul class="nav nav-pills nav-justified">
-          <li role="presentation" class="active"><a href="#AggregateReport" aria-controls="AggregateReport" role="pill" data-toggle="pill">Aggregate Reports</a></li>
-          <li role="presentation"><a href="#ResponseTime" aria-controls="ResponseTime" role="pill" data-toggle="pill">Response Time Over Time Graphs</a></li>
-        </ul>
      <div class="row">
 
-<%   for(int i=0; i < listOfFoldersAggregate.length;i++)
+<%   for(int i=0; i < listOfFolders.length;i++)
     {
-     String prodNameWithExtension    = listOfFoldersAggregate[i].getName();
-     String prodName = prodNameWithExtension.replace(".csv","");
-     String pathProductAggregate = desiredFolder+"\\AggregateReport"+prodNameWithExtension;
+     String prodName    = listOfFolders[i].getName();
+     String addrReport  = desiredFolder +"/"+ prodName + "/index.html";
  %>
-    <a role="button" class="btn btn-info btn-lg col-xs-3 col-xs-offset-1" href="<%=prodName%>" target="_blank" style="margin-bottom:1em"><%=prodName%></a>
+    <a role="button" class="btn btn-info btn-lg col-xs-3 col-xs-offset-1" href="<%=addrReport%>" target="_blank" style="margin-bottom:1em"><%=prodName%></a>
 <%}}%>
      </div>
   </div>
