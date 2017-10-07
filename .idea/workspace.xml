@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d540367e-0360-42dd-9e23-7622380a65f4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.class" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/localhost_access_log.2017-10-07.txt" afterPath="$PROJECT_DIR$/logs/localhost_access_log.2017-10-07.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapps/ROOT/home.jsp" afterPath="$PROJECT_DIR$/webapps/ROOT/home.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" />
     </list>
@@ -37,8 +38,8 @@
       <file leaf-file-name="home.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="105" column="55" selection-start-line="105" selection-start-column="55" selection-end-line="105" selection-end-column="55" />
+            <state relative-caret-position="374">
+              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -692,8 +693,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="105" column="55" selection-start-line="105" selection-start-column="55" selection-end-line="105" selection-end-column="55" />
+        <state relative-caret-position="374">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding />
         </state>
       </provider>

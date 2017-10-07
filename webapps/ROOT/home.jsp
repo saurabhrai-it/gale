@@ -17,34 +17,22 @@
     $('ul.nav.navbar-nav.navbar-right li a').click(function() {
         $(this).parent().addClass('active').siblings().removeClass('active');
     });
+
+
+    document.querySelector("td.normalAvg").onload = function() {myFunction()};
+
+
     </script>
+    <style>
+    .btn{
+      font-size:14px;
+      padding:4px 8px;
+    }
+
+    </style>
 </head>
-
-<body>
-      <!-- Fixed navbar -->
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">GALE REPORTS</a>
-          </div>
-          <div id="navbar">
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#AggregateReports" data-toggle="tab">Aggregate Reports</a></li>
-              <li><a href="#ResponseTime" data-toggle="tab">Response Time Graphs</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-
-    <div class="tab-content" style="margin-top:60px;">
-      <div class="tab-pane active" id="AggregateReports" style="color:#333;">
-      <div class="row">
-      <div class="col-md-2" style="position:fixed;background-color:#fff">
-        <h4 class="text-center" style="color:#777;">PRODUCT NAME</h4>
-<%@ page import="java.util.*" %>
-<%@ page import="java.io.*" %>
 <%
+
      //String binDir                       = System.getProperty("user.dir").toString();
      String currDir                        = "..\\webapps\\ROOT";
      String name                           = request.getParameter("testNumber");
@@ -69,6 +57,40 @@
                 break;
              }
           }
+%>
+<body>
+      <nav class="navbar navbar-default">
+        <div class="container" style="padding-left:0px;">
+          <div class="navbar-header">
+            <a href="#" id="goTop"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
+            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a class="navbar-brand" href="#">DURATION : <%=testTime%></a>
+          </div>
+          <div id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#AggregateReports" data-toggle="tab">Aggregate Reports</a></li>
+              <li><a href="#ResponseTime" data-toggle="tab">Response Time Graphs</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+   <div class="footer" style="position:fixed;z-index:999999;bottom:0;left:0;">
+   <a href="#goTop" style="text-decoration:none;">
+   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP">
+     <span class="glyphicon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+     <strong>TOP</strong>
+   </button></a>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active" id="AggregateReports">
+      <div class="row">
+      <div class="col-md-2" style="position:absolute;background-color:#f8f8f8;">
+        <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%
           if(errorMsg=="")
                {
                   desiredFolder                      = name + "_" + testValue;
@@ -93,7 +115,7 @@
                      prodName               = prodNameWithExtension.replace(".csv","");
                      pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
              %>
-           <li><a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;"><%=prodName%></a></li><%}%>
+           <li><a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;"><%=prodName%></a></li><%}%>
          </ul>
          </div>
          <%
@@ -103,7 +125,7 @@
                     prodName              = prodNameWithExtension.replace(".csv","");
                     pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
-         <div class="col-md-10" style="margin-left:15%;">
+         <div class="col-md-10" style="margin-left:16%;">
          <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
          <table class="table table-striped" style="font-size:16px;">
            <thead>
@@ -144,12 +166,12 @@
              <tr>
                 <td><%=label%></td>
                 <td><%=sample%></td>
-                <td><%=avg%></td>
+                <td class="normalAvg" onL><%=avg%></td>
                 <td><%=median%></td>
                 <td><%=ninetyline%></td>
                 <td><%=min%></td>
                 <td><%=max%></td>
-                <td><%=error%></td>
+                <td class="normalError"><%=error%></td>
                 <td><%=throughput%></td>
                 <td><%=kbpersec%></td>
               </tr>
