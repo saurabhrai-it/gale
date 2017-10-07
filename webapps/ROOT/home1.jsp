@@ -83,21 +83,70 @@
                     {
                      String prodNameWithExtension    = listOfFoldersAggregate[i].getName();
                      String prodName = prodNameWithExtension.replace(".csv","");
-                     String pathProductAggregate = desiredFolder+"\\AggregateReport"+prodNameWithExtension;
+                     String pathProductAggregate = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
              %>
 
          <ul style="list-style:none;">
-           <li style="text-decoration:none;">
+           <li>
              <a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
                 <%=prodName%>
              </a>
            </li>
          </ul>
-         <%
-         FileReader fileReader = new FileReader(tempFileFullPath);
-         BufferedReader bufferedReader = new BufferedReader(fileReader);
-         }}%>
       </div>
+         <table class="table" style="float:right;margin:auto;">
+           <thead>
+             <tr>
+               <th>Label</th>
+               <th>Sample</th>
+               <th>Average(Sec.)</th>
+               <th>Median(Sec.)</th>
+               <th>90% Line(Sec.)</th>
+               <th>Min(Sec.)</th>
+               <th>Max(Sec.)</th>
+               <th>Error%</th>
+               <th>Throughput</th>
+               <th>KB/Sec</th>
+             </tr>
+           </thead>
+           <tbody>
+         <%
+         String line;
+         String[] dataInLine;
+         FileReader fileReader = new FileReader(pathProductAggregate);
+         BufferedReader bufferedReader = new BufferedReader(fileReader);
+         while ((line = bufferedReader.readLine()) != null) {
+                if(line.startsWith("sampler_label"))
+                   continue;
+                   dataInLine=line.split(",");
+                   String label = dataInLine[0];
+                   int sample = Integer.parseInt(dataInLine[1]);
+                   float avg = Float.parseFloat(dataInLine[2])/1000;
+                   float median = Float.parseFloat(dataInLine[3])/1000;
+                   float ninetyline = Float.parseFloat(dataInLine[4])/1000;
+                   float min = Float.parseFloat(dataInLine[5])/1000;
+                   float max = Float.parseFloat(dataInLine[6])/1000;
+                   String error = dataInLine[7];
+                   String throughput = dataInLine[8];
+                   String kbpersec = dataInLine[9];
+
+          %>
+             <tr>
+                <td><%=label%></td>
+                <td><%=sample%></td>
+                <td><%=avg%></td>
+                <td><%=median%></td>
+                <td><%=ninetyline%></td>
+                <td><%=min%></td>
+                <td><%=max%></td>
+                <td><%=error%></td>
+                <td><%=throughput%></td>
+                <td><%=kbpersec%></td>
+              </tr>
+          <%
+         }%>
+         </tbody>
+         <%}}%></table>
 
 
 
