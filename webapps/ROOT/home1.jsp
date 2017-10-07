@@ -27,7 +27,7 @@
           <div class="navbar-header">
             <a class="navbar-brand" href="#">GALE REPORTS</a>
           </div>
-          <div id="navbar" >
+          <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#AggregateReports" data-toggle="tab">Aggregate Reports</a></li>
               <li><a href="#ResponseTime" data-toggle="tab">Response Time Graphs</a></li>
@@ -38,7 +38,9 @@
 
 
     <div class="tab-content" style="margin-top:60px;">
-      <div class="tab-pane active" id="AggregateReports" style="margin-right:85%;color:#333;">
+      <div class="tab-pane active" id="AggregateReports" style="color:#333;">
+      <div class="row">
+      <div class="col-md-2" style="position:fixed;">
         <h4 class="text-center" style="color:#777;">PRODUCT NAME</h4>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
@@ -79,34 +81,42 @@
                   File[] listOfFoldersAggregate = folderAggregate.listFiles();
                   File[] listOfFoldersResponseTime = folderResponseTime.listFiles();
                   //File[] listOfFoldersResponseCode = folderResponseCode.listFiles();
-                for(int i=0; i < listOfFoldersAggregate.length;i++)
-                    {
-                     String prodNameWithExtension    = listOfFoldersAggregate[i].getName();
-                     String prodName = prodNameWithExtension.replace(".csv","");
-                     String pathProductAggregate = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
-             %>
+                  String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
 
-         <ul style="list-style:none;">
-           <li>
-             <a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
-                <%=prodName%>
-             </a>
-           </li>
+
+           %>
+           <ul style="list-style:none;">
+           <%
+                  for(int i=0; i < listOfFoldersAggregate.length;i++)
+                    {
+                     prodNameWithExtension    = listOfFoldersAggregate[i].getName();
+                     prodName = prodNameWithExtension.replace(".csv","");
+                     pathProductAggregate = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+             %>
+           <li><a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;"><%=prodName%></a></li><%}%>
          </ul>
-      </div>
-         <table class="table" style="float:right;margin:auto;">
+         </div>
+         <%
+            for(int i=0; i < listOfFoldersAggregate.length;i++)
+            {
+                    prodNameWithExtension    = listOfFoldersAggregate[i].getName();
+                    prodName = prodNameWithExtension.replace(".csv","");
+                    pathProductAggregate = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+         %>
+         <div class="col-md-10" style="margin-left:15%">
+         <table>
            <thead>
              <tr>
-               <th>Label</th>
-               <th>Sample</th>
-               <th>Average(Sec.)</th>
-               <th>Median(Sec.)</th>
-               <th>90% Line(Sec.)</th>
-               <th>Min(Sec.)</th>
-               <th>Max(Sec.)</th>
-               <th>Error%</th>
-               <th>Throughput</th>
-               <th>KB/Sec</th>
+               <th>Label   </th>
+               <th>Sample  </th>
+               <th>Average(Sec.) </th>
+               <th>Median(Sec.) </th>
+               <th>90% Line(Sec.)  </th>
+               <th>Min(Sec.)  </th>
+               <th>Max(Sec.)  </th>
+               <th>Error%  </th>
+               <th>Throughput  </th>
+               <th>KB/Sec  </th>
              </tr>
            </thead>
            <tbody>
@@ -147,7 +157,9 @@
          }%>
          </tbody>
          <%}}%></table>
-
+      </div>
+      </div>
+      </div>
 
 
 
