@@ -45,16 +45,16 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%
-     //String binDir = System.getProperty("user.dir").toString();
-     String currDir = "..\\webapps\\ROOT";
-     String name    = request.getParameter("testNumber");
-     String fullFolderLocationAggregate = "";
+     //String binDir                       = System.getProperty("user.dir").toString();
+     String currDir                        = "..\\webapps\\ROOT";
+     String name                           = request.getParameter("testNumber");
+     String fullFolderLocationAggregate    = "";
      String fullFolderLocationResponseTime = "";
-     String desiredFolder = "";
-     File mainFolder = new File(currDir);
-     File[] mainFolders = mainFolder.listFiles();
+     String desiredFolder                  = "";
+     File mainFolder                       = new File(currDir);
+     File[] mainFolders                    = mainFolder.listFiles();
      String testTime = "";String testValue = "";
-     String errorMsg = "";String fileName = "";
+     String errorMsg = "";String fileName  = "";
      for(int j=0; j < mainFolders.length;j++)
           {
              fileName = mainFolders[j].getName().toString();
@@ -99,19 +99,20 @@
          <%
             for(int i=0; i < listOfFoldersAggregate.length;i++)
             {
-                    prodNameWithExtension    = listOfFoldersAggregate[i].getName();
-                    prodName = prodNameWithExtension.replace(".csv","");
-                    pathProductAggregate = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                    prodNameWithExtension = listOfFoldersAggregate[i].getName();
+                    prodName              = prodNameWithExtension.replace(".csv","");
+                    pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
-         <div class="col-md-10" style="margin-left:15%">
-         <table>
+         <div class="col-md-10" style="margin-left:15%;">
+         <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
+         <table class="table table-striped" style="font-size:16px;">
            <thead>
              <tr>
                <th>Label</th>
                <th>Sample</th>
                <th>Average(Sec.)</th>
                <th>Median(Sec.)</th>
-               <th>90% Line(Sec.)</th>
+               <th>90% Line</th>
                <th>Min(Sec.)</th>
                <th>Max(Sec.)</th>
                <th>Error%</th>
@@ -128,17 +129,17 @@
          while ((line = bufferedReader.readLine()) != null) {
                 if(line.startsWith("sampler_label"))
                    continue;
-                   dataInLine=line.split(",");
-                   String label = dataInLine[0];
-                   int sample = Integer.parseInt(dataInLine[1]);
-                   float avg = Float.parseFloat(dataInLine[2])/1000;
-                   float median = Float.parseFloat(dataInLine[3])/1000;
-                   float ninetyline = Float.parseFloat(dataInLine[4])/1000;
-                   float min = Float.parseFloat(dataInLine[5])/1000;
-                   float max = Float.parseFloat(dataInLine[6])/1000;
-                   String error = dataInLine[7];
+                   dataInLine        = line.split(",");
+                   String label      = dataInLine[0];
+                   int sample        = Integer.parseInt(dataInLine[1]);
+                   float avg         = Float.parseFloat(dataInLine[2])/1000;
+                   float median      = Float.parseFloat(dataInLine[3])/1000;
+                   float ninetyline  = Float.parseFloat(dataInLine[4])/1000;
+                   float min         = Float.parseFloat(dataInLine[5])/1000;
+                   float max         = Float.parseFloat(dataInLine[6])/1000;
+                   String error      = dataInLine[7];
                    String throughput = dataInLine[8];
-                   String kbpersec = dataInLine[9];
+                   String kbpersec   = dataInLine[9];
           %>
              <tr>
                 <td><%=label%></td>
@@ -154,8 +155,9 @@
               </tr>
           <%}%>
          </tbody>
-         <%}}%></table>
+         </table>
       </div>
+         <%}}%>
       </div>
       </div>
 
@@ -170,6 +172,6 @@
          <a class="btn cont" href="#">sdsgsd</a>
       </div>
    </div>
-
+<%=errorMsg%>
 </body>
 </html>
