@@ -94,13 +94,10 @@
                   desiredFolder                      = name + "_" + testValue;
                   fullFolderLocationAggregate        = currDir +"\\"+desiredFolder+"\\AggregateReport";
                   fullFolderLocationResponseTime     = currDir +"\\"+desiredFolder+"\\ResponseTime";
-                  //fullFolderLocationResponseCode   = currDir +"\\"+desiredFolder+"\\ResponseCode";
                   File folderAggregate               = new File(fullFolderLocationAggregate);
                   File folderResponseTime            = new File(fullFolderLocationResponseTime);
-                  //File folderResponseCode          = new File(fullFolderLocationResponseCode);
                   File[] listOfFoldersAggregate      = folderAggregate.listFiles();
                   File[] listOfFoldersResponseTime   = folderResponseTime.listFiles();
-                  //File[] listOfFoldersResponseCode = folderResponseCode.listFiles();
                   String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
 
 
@@ -199,7 +196,7 @@
          </table>
               <hr/>
       </div>
-         <%}}%>
+         <%}%>
       </div>
       </div>
 
@@ -210,9 +207,30 @@
 
 
       <div class="tab-pane" id="ResponseTime">
-         Step 2
-         <a class="btn cont" href="#">sdsgsd</a>
+        <div class="row" style="margin-right:0;">
+         <div class="col-md-2" style="position:absolute;background-color:#f8f8f8;">
+          <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
+          <ul style="list-style:none;">
+                    <%
+                           for(int i=0; i < listOfFoldersResponseTime.length;i++)
+                             {
+                              prodNameWithExtension  = listOfFoldersResponseTime[i].getName();
+                              prodName               = prodNameWithExtension.replace(".png","");
+                              pathProductAggregate   = fullFolderLocationResponseTime+"\\"+prodNameWithExtension;
+                      %>
+                    <li class="addHoverManager">
+                      <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
+                         <%=prodName%>
+                      </a>
+                    </li>
+                             <%}%>
+          </ul>
+         </div>
+
+        </div>
       </div>
+
+      <%}%>
    </div>
 <%=errorMsg%>
 </body>
