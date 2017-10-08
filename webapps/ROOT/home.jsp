@@ -17,11 +17,6 @@
     $('ul.nav.navbar-nav.navbar-right li a').click(function() {
         $(this).parent().addClass('active').siblings().removeClass('active');
     });
-
-
-    document.querySelector("td.normalAvg").onload = function() {myFunction()};
-
-
     </script>
     <style>
     .btn{
@@ -29,6 +24,9 @@
       padding:4px 8px;
     }
 
+    li.addHoverManager:hover{
+        background-color: #e3e3e3;
+    }
     </style>
 </head>
 <%
@@ -85,7 +83,7 @@
     </div>
     <div class="tab-content">
       <div class="tab-pane active" id="AggregateReports">
-      <div class="row">
+      <div class="row" style="margin-right:0;">
       <div class="col-md-2" style="position:absolute;background-color:#f8f8f8;">
         <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
 <%@ page import="java.util.*" %>
@@ -115,7 +113,12 @@
                      prodName               = prodNameWithExtension.replace(".csv","");
                      pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
              %>
-           <li><a class="btn cont" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;"><%=prodName%></a></li><%}%>
+           <li class="addHoverManager">
+             <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
+                <%=prodName%>
+             </a>
+           </li>
+                    <%}%>
          </ul>
          </div>
          <%
@@ -162,22 +165,39 @@
                    String error      = dataInLine[7];
                    String throughput = dataInLine[8];
                    String kbpersec   = dataInLine[9];
+
+                   String errorString=error.replace("%","");
+                   float errorFloat=Float.parseFloat(errorString);
+                   if(errorFloat>=2.0)
+                      errorString = "<td style='color:red;font-weight:600;'>"+error+"</td>";
+                   else
+                      errorString = "<td>"+error+"</td>";
+                   String avgString;
+                   if(avg>=3.0)
+                    avgString = "<td style='color:red;font-weight:600;'>"+avg+"</td>";
+                   else
+                    avgString = "<td>"+avg+"</td>";
           %>
              <tr>
                 <td><%=label%></td>
                 <td><%=sample%></td>
-                <td class="normalAvg" onL><%=avg%></td>
+                <%=avgString%>
                 <td><%=median%></td>
                 <td><%=ninetyline%></td>
                 <td><%=min%></td>
                 <td><%=max%></td>
-                <td class="normalError"><%=error%></td>
+                <%=errorString%>
                 <td><%=throughput%></td>
                 <td><%=kbpersec%></td>
               </tr>
-          <%}%>
+          <%
+          }
+          bufferedReader.close();
+          fileReader.close();
+          %>
          </tbody>
          </table>
+              <hr/>
       </div>
          <%}}%>
       </div>
