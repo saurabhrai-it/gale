@@ -23,14 +23,12 @@
       font-size:14px;
       padding:4px 8px;
     }
-
     li.addHoverManager:hover{
         background-color: #e3e3e3;
     }
     </style>
 </head>
 <%
-
      //String binDir                       = System.getProperty("user.dir").toString();
      String currDir                        = "..\\webapps\\ROOT";
      String name                           = request.getParameter("testNumber");
@@ -99,8 +97,6 @@
                   File[] listOfFoldersAggregate      = folderAggregate.listFiles();
                   File[] listOfFoldersResponseTime   = folderResponseTime.listFiles();
                   String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
-
-
            %>
            <ul style="list-style:none;">
            <%
@@ -162,7 +158,6 @@
                    String error      = dataInLine[7];
                    String throughput = dataInLine[8];
                    String kbpersec   = dataInLine[9];
-
                    String errorString=error.replace("%","");
                    float errorFloat=Float.parseFloat(errorString);
                    if(errorFloat>=2.0)
@@ -214,19 +209,33 @@
                     <%
                            for(int i=0; i < listOfFoldersResponseTime.length;i++)
                              {
-                              prodNameWithExtension  = listOfFoldersResponseTime[i].getName();
-                              prodName               = prodNameWithExtension.replace(".png","");
-                              pathProductAggregate   = fullFolderLocationResponseTime+"\\"+prodNameWithExtension;
+                              prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
+                              prodResTime               = prodResTimeWithExtension.replace(".png","");
+                              pathProductResTime   = fullFolderLocationResponseTime+"\\"+prodResTimeWithExtension;
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
-                         <%=prodName%>
+                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
+                         <%=prodResTime%>
                       </a>
                     </li>
                              <%}%>
           </ul>
          </div>
 
+                <div class="col-md-10" style="margin-left:16%;">
+                    <%
+                          for(int i=0; i < listOfFoldersResponseTime.length;i++)
+                             {
+                               prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
+                               prodResTime               = prodResTimeWithExtension.replace(".png","");
+                               pathProductResTime        = "\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
+
+                    %>
+                    <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
+                     <img src="<%=pathProductResTime%>" class="img-fluid" style="width:100%;" alt="<%=prodResTime%> : Response Time Graph"/>
+
+                    <%}%>
+                </div>
         </div>
       </div>
 
