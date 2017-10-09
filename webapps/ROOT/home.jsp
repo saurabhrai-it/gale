@@ -26,6 +26,10 @@
     li.addHoverManager:hover{
         background-color: #e3e3e3;
     }
+
+    .boldMaker{
+     font-weight:600;
+    }
     </style>
 </head>
 <%
@@ -146,8 +150,13 @@
          FileReader fileReader         = new FileReader(pathProductAggregate);
          BufferedReader bufferedReader = new BufferedReader(fileReader);
          while ((line = bufferedReader.readLine()) != null) {
-                if(line.startsWith("sampler_label"))
-                   continue;
+                   if(line.startsWith("sampler_label"))
+                        continue;
+
+                    String bold = "";
+                    if(line.startsWith("TOTAL"))
+                        bold = "class='boldMaker'";
+
                    dataInLine        = line.split(",");
                    String label      = dataInLine[0];
                    int sample        = Integer.parseInt(dataInLine[1]);
@@ -171,7 +180,7 @@
                    else
                     avgString = "<td>"+avg+"</td>";
           %>
-             <tr>
+             <tr <%=bold%>>
                 <td><%=label%></td>
                 <td><%=sample%></td>
                 <%=avgString%>
@@ -233,8 +242,7 @@
 
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
-                     <img src="<%=pathProductResTime%>" class="img-fluid" style="width:100%;" alt="<%=prodResTime%> : Response Time Graph"/>
-
+                     <img src="<%=pathProductResTime%>" class="img-fluid" style="width:100%;height:50%" alt="<%=prodResTime%> : Response Time Graph"/>
                     <%}%>
                 </div>
         </div>
