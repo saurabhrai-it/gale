@@ -6,6 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapps/ROOT/home.jsp" afterPath="$PROJECT_DIR$/webapps/ROOT/home.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java" />
     </list>
     <ignored path="gale.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +39,8 @@
       <file leaf-file-name="home.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+            <state relative-caret-position="609">
+              <caret line="245" column="133" selection-start-line="245" selection-start-column="133" selection-end-line="245" selection-end-column="133" />
               <folding />
             </state>
           </provider>
@@ -769,8 +770,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="609">
+          <caret line="245" column="133" selection-start-line="245" selection-start-column="133" selection-end-line="245" selection-end-column="133" />
           <folding />
         </state>
       </provider>

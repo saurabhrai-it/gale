@@ -128,7 +128,7 @@
          %>
          <div class="col-md-10" style="margin-left:16%;">
          <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
-         <table class="table table-striped" style="font-size:16px;">
+         <table class="table table-striped table-bordered" style="font-size:16px;">
            <thead>
              <tr>
                <th>Label</th>
@@ -242,7 +242,10 @@
 
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
-                     <img src="<%=pathProductResTime%>" class="img-fluid" style="width:100%;height:50%" alt="<%=prodResTime%> : Response Time Graph"/>
+                    <div class="text-center">
+                     <img src="<%=pathProductResTime%>" class="img-fluid img-thumbnail" alt="<%=prodResTime%> : Response Time Graph"/>
+
+                    </div>
                     <%}%>
                 </div>
         </div>
