@@ -153,12 +153,14 @@
                    if(line.startsWith("sampler_label"))
                         continue;
 
-                    String bold = "";
-                    if(line.startsWith("TOTAL"))
-                        bold = "class='boldMaker'";
+                   String bold = "";
 
                    dataInLine        = line.split(",");
                    String label      = dataInLine[0];
+
+                    if(label.equals("TOTAL"))
+                        bold = "class='boldMaker'";
+
                    int sample        = Integer.parseInt(dataInLine[1]);
                    float avg         = Float.parseFloat(dataInLine[2])/1000;
                    float median      = Float.parseFloat(dataInLine[3])/1000;
