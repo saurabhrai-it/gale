@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d540367e-0360-42dd-9e23-7622380a65f4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webapps/ROOT/home.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.class" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapps/ROOT/home.jsp" afterPath="$PROJECT_DIR$/webapps/ROOT/home.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home_jsp.java" />
     </list>
     <ignored path="gale.iws" />
@@ -38,8 +38,8 @@
       <file leaf-file-name="home.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="245" column="7" selection-start-line="245" selection-start-column="7" selection-end-line="245" selection-end-column="7" />
+            <state relative-caret-position="-1910">
+              <caret line="99" column="100" selection-start-line="99" selection-start-column="100" selection-end-line="99" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -769,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapps/ROOT/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="245" column="7" selection-start-line="245" selection-start-column="7" selection-end-line="245" selection-end-column="7" />
+        <state relative-caret-position="-1910">
+          <caret line="99" column="100" selection-start-line="99" selection-start-column="100" selection-end-line="99" selection-end-column="100" />
           <folding />
         </state>
       </provider>

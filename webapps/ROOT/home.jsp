@@ -97,6 +97,7 @@
                   File[] listOfFoldersAggregate      = folderAggregate.listFiles();
                   File[] listOfFoldersResponseTime   = folderResponseTime.listFiles();
                   String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
+                  String prodResTimeWithExtension="";String prodResTime="";String pathProductResTime="";
            %>
            <ul style="list-style:none;">
            <%
