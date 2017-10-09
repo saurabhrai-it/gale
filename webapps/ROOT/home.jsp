@@ -14,9 +14,35 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-    $('ul.nav.navbar-nav.navbar-right li a').click(function() {
-        $(this).parent().addClass('active').siblings().removeClass('active');
-    });
+        $('ul.nav.navbar-nav.navbar-right li a').click(function() {
+            $(this).parent().addClass('active').siblings().removeClass('active');
+        });
+
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $("a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+
     </script>
     <style>
     .btn{
@@ -128,7 +154,7 @@
          %>
          <div class="col-md-10" style="margin-left:16%;">
          <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
-         <table class="table table-striped table-bordered" style="font-size:16px;">
+         <table class="table table-bordered table-hover" style="font-size:16px;"> <!-- table-striped -->
            <thead>
              <tr>
                <th>Label</th>
