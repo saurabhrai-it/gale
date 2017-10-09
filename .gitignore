@@ -1,0 +1,16 @@
+*.iml
+*.idea
+bin/
+conf/
+lib/
+logs/
+temp/
+webapps/docs/
+webapps/examples/
+webapps/host-manager/
+webapps/manager/
+work/
+LICENCE
+NOTICE
+RELEASE-NOTES
+RUNNING.txt
