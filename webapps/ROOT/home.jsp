@@ -31,10 +31,10 @@
               var hash = this.hash;
 
               // Using jQuery's animate() method to add smooth page scroll
-              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              // The optional number (200) specifies the number of milliseconds it takes to scroll to the specified area
               $('html, body').animate({
                 scrollTop: $(hash).offset().top
-              }, 800, function(){
+              }, 200, function(){
 
                 // Add hash (#) to URL when done scrolling (default click behavior)
                 window.location.hash = hash;
@@ -153,7 +153,12 @@
                     pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
          <div class="col-md-10" style="margin-left:16%;">
-         <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
+         <div class="text-center">
+            <button type="button" class="btn btn-outline-info btn-lg">
+             <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
+            </button>
+         </div>
+
          <table class="table table-bordered table-hover" style="font-size:16px;"> <!-- table-striped -->
            <thead>
              <tr>
@@ -227,7 +232,6 @@
           %>
          </tbody>
          </table>
-              <hr/>
       </div>
          <%}%>
       </div>
