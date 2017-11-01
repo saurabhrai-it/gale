@@ -56,6 +56,7 @@
     .boldMaker{
      font-weight:600;
     }
+	
     </style>
 </head>
 <%

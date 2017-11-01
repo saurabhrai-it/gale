@@ -10,7 +10,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <script>
-        var testNumber = prompt("Please enter the load test number(eg. 1947)", "1947");
+        var testNumber = prompt("Please enter the load test number(eg. 1947)", "2148");
         window.location = "home.jsp?testNumber=" + encodeURIComponent(testNumber);
     </script>
 </head>
