@@ -129,7 +129,7 @@
                   File[] listOfFoldersResponseTime   = folderResponseTime.listFiles();
                   String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
                   String prodResTimeWithExtension="";String prodResTime="";String pathProductResTime="";
-                  Float overallResponseTime;String overallSample = "";
+                  String overallResponseTime;String overallSample = "";
            %>
            <ul style="list-style:none;">
            <%
@@ -173,7 +173,7 @@
                                      {
                                             dataInLineOverall        = lineOverall.split(",");
                                             overallSample            = dataInLineOverall[1];
-                                            overallResponseTime      = Float.parseFloat(dataInLineOverall[2])/1000;
+                                            overallResponseTime      = String.format("%.03f", Float.parseFloat(dataInLineOverall[2])/1000);
                                      }
                                      else
                                        continue;
@@ -243,19 +243,19 @@
                    float min         = Float.parseFloat(dataInLine[5])/1000;
                    float max         = Float.parseFloat(dataInLine[6])/1000;
                    String error      = dataInLine[7];
-                   String throughput = dataInLine[8];
-                   String kbpersec   = dataInLine[9];
+                   String throughput = String.format("%.02f", Float.parseFloat(dataInLine[8]));
+                   String kbpersec   = String.format("%.02f", Float.parseFloat(dataInLine[9]));
                    String errorString=error.replace("%","");
                    float errorFloat=Float.parseFloat(errorString);
                    if(errorFloat>=2.0)
-                      errorString = "<td style='color:red;font-weight:600;'>"+error+"</td>";
+                      errorString = "<td style='color:red;font-weight:600;'>"+String.format("%.02f", errorFloat)+"</td>";
                    else
-                      errorString = "<td>"+error+"</td>";
+                      errorString = "<td>"+String.format("%.02f", Float.parseFloat(error))+"</td>";
                    String avgString;
                    if(avg>=3.0)
-                    avgString = "<td style='color:red;font-weight:600;'>"+avg+"</td>";
+                    avgString = "<td style='color:red;font-weight:600;'>"+String.format("%.03f", avg)+"</td>";
                    else
-                    avgString = "<td>"+avg+"</td>";
+                    avgString = "<td>"+String.format("%.03f", avg)+"</td>";
           %>
              <tr <%=bold%>>
                 <td><%=label%></td>
