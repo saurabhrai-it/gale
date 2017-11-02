@@ -147,48 +147,6 @@
                     <%}%>
          </ul>
          </div>
-         <div class="col-md-10 col-md-offset-2">
-            <h4 class="text-center" style="color:#111;">Overall Response Time And Sample Counts For Individual Products</h4>
-            <table class="table table-bordered table-hover" style="font-size:16px;">
-            <thead>
-                         <tr>
-                           <th>Products</th>
-                           <th>Average Response Time(Seconds)</th>
-                           <th>Samples</th>
-                         </tr>
-            </thead>
-            <tbody>
-            <%
-                              for(int j=0; j < listOfFoldersAggregate.length;j++)
-                                {
-                                 prodNameWithExtension  = listOfFoldersAggregate[j].getName();
-                                 prodName               = prodNameWithExtension.replace(".csv","");
-                                 pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
-                                 String lineOverall;
-                                 String[] dataInLineOverall;
-                                 FileReader fileReaderOverall         = new FileReader(pathProductAggregate);
-                                 BufferedReader bufferedReaderOverall = new BufferedReader(fileReaderOverall);
-                                 while ((lineOverall = bufferedReaderOverall.readLine()) != null) {
-                                     if(lineOverall.startsWith("TOTAL"))
-                                     {
-                                            dataInLineOverall        = lineOverall.split(",");
-                                            overallSample            = dataInLineOverall[1];
-                                            overallResponseTime      = String.format("%.03f", Float.parseFloat(dataInLineOverall[2])/1000);
-                                     }
-                                     else
-                                       continue;
-            %>
-            <tr>
-                <td><%=prodName%></td>
-                <td><%=overallResponseTime%></td>
-                <td><%=overallSample%></td>
-            </tr>
-            <%
-                                }}
-            %>
-          </tbody>
-         </table>
-         </div>
          <%
             for(int i=0; i < listOfFoldersAggregate.length;i++)
             {
