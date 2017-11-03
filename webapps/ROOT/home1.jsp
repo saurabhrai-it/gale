@@ -130,6 +130,7 @@
                   String prodNameWithExtension="";String prodName="";String pathProductAggregate="";
                   String prodResTimeWithExtension="";String prodResTime="";String pathProductResTime="";
                   String overallResponseTime;String overallSample = "";
+                  String averageResponseTimeSLA = "";String errorSLA = "";
            %>
            <ul style="list-style:none;">
            <%
@@ -189,6 +190,135 @@
           </tbody>
          </table>
          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <div class="col-md-4 col-md-offset-2">
+                     <h4 class="text-center" style="color:#111;">Average Response Time Not Matching SLA(3 Sec)</h4>
+                     <table>
+                     <%
+                                       for(int k=0; k < listOfFoldersAggregate.length;k++)
+                                         {
+                                          prodNameWithExtension  = listOfFoldersAggregate[k].getName();
+                                          prodName               = prodNameWithExtension.replace(".csv","");
+                                          pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                                          String lock = "TRUE";
+                                          String lineOverallSLA;
+                                          String[] dataInLineOverallSLA;
+                                          FileReader fileReaderOverallSLA         = new FileReader(pathProductAggregate);
+                                          BufferedReader bufferedReaderOverallSLA = new BufferedReader(fileReaderOverallSLA);
+                                          while ((lineOverallSLA = bufferedReaderOverallSLA.readLine()) != null) {
+                                              if((!lineOverallSLA.startsWith("TOTAL"))&&(!lineOverallSLA.startsWith("sampler_label")))
+                                              {
+                                                     dataInLineOverallSLA     = lineOverallSLA.split(",");
+                                                     averageResponseTimeSLA   = dataInLineOverallSLA[2];
+                                                     Float tempAvgResSLA      = Float.parseFloat(averageResponseTimeSLA)/1000;
+                                                     if(tempAvgResSLA>3.0)
+                                                     {
+
+                     %>
+                                                                                 <tr>
+                                                                                    <th>
+                                                                                    <%if(lock.equals("TRUE")){%>
+                                                                                         <%=prodName%><%}%>
+                                                                                       <tr>
+                                                                                            <td><%=dataInLineOverallSLA[0]%></td>
+                                                                                            <td><%=String.format("%.03f", tempAvgResSLA)%></td>
+                                                                                      </tr>
+                                                                                    </th>
+                                                                                 </tr>
+
+                    <%                                lock = "FALSE";
+
+                                                     }
+                                              }
+                                              else
+                                                continue;
+
+                                         }}
+                     %>
+                  </table>
+         </div>
+
+
+
+
+
+
+
+
+         <div class="col-md-4 col-md-offset-1">
+                     <h4 class="text-center" style="color:#111;"> Response Time And Sample Counts For Individual Products</h4>
+                     <table class="table table-bordered table-hover" style="font-size:16px;">
+                     <thead>
+                                  <tr>
+                                    <th>Products</th>
+                                    <th>Average Response Time(Seconds)</th>
+                                    <th>Samples</th>
+                                  </tr>
+                     </thead>
+                     <tbody>
+                     <%
+                                       for(int j=0; j < listOfFoldersAggregate.length;j++)
+                                         {
+                                          prodNameWithExtension  = listOfFoldersAggregate[j].getName();
+                                          prodName               = prodNameWithExtension.replace(".csv","");
+                                          pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                                          String lineOverall;
+                                          String[] dataInLineOverall;
+                                          FileReader fileReaderOverall         = new FileReader(pathProductAggregate);
+                                          BufferedReader bufferedReaderOverall = new BufferedReader(fileReaderOverall);
+                                          while ((lineOverall = bufferedReaderOverall.readLine()) != null) {
+                                              if(lineOverall.startsWith("TOTAL"))
+                                              {
+                                                     dataInLineOverall        = lineOverall.split(",");
+                                                     overallSample            = dataInLineOverall[1];
+                                                     overallResponseTime      = String.format("%.03f", Float.parseFloat(dataInLineOverall[2])/1000);
+                                              }
+                                              else
+                                                continue;
+                     %>
+                     <tr>
+                         <td><%=prodName%></td>
+                         <td><%=overallResponseTime%></td>
+                         <td><%=overallSample%></td>
+                     </tr>
+                     <%
+                                         }}
+                     %>
+                   </tbody>
+                  </table>
+         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          <%
             for(int i=0; i < listOfFoldersAggregate.length;i++)
             {
@@ -261,10 +391,10 @@
                 <td><%=label%></td>
                 <td><%=sample%></td>
                 <%=avgString%>
-                <td><%=median%></td>
-                <td><%=ninetyline%></td>
-                <td><%=min%></td>
-                <td><%=max%></td>
+                <td><%=String.format("%.03f", median)%></td>
+                <td><%=String.format("%.03f", ninetyline)%></td>
+                <td><%=String.format("%.03f", min)%></td>
+                <td><%=String.format("%.03f", max)%></td>
                 <%=errorString%>
                 <td><%=throughput%></td>
                 <td><%=kbpersec%></td>
@@ -280,11 +410,6 @@
          <%}%>
       </div>
       </div>
-
-
-
-
-
 
 
       <div class="tab-pane" id="ResponseTime">
