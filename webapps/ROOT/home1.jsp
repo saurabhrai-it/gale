@@ -210,8 +210,8 @@
 
 
          <div class="col-md-4 col-md-offset-2">
-                     <h4 class="text-center" style="color:#111;">Average Response Time Not Matching SLA(3 Sec)</h4>
-                     <table>
+                     <h4 class="text-center" style="color:#111;">Average Response Time Above SLA(3 Sec)</h4>
+                     <table style="font-size:16px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
                                          {
@@ -264,8 +264,8 @@
 
 
          <div class="col-md-4 col-md-offset-1">
-                    <h4 class="text-center" style="color:#111;">Error Not Matching SLA(2%)</h4>
-                                         <table>
+                    <h4 class="text-center" style="color:#111;">Error Above SLA(2%)</h4>
+                                         <table style="font-size:16px;">
                                          <%
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
                                                              {
@@ -299,12 +299,10 @@
                                                                                                      </tr>
 
                                         <%                                lock = "FALSE";
-
                                                                          }
                                                                   }
                                                                   else
                                                                     continue;
-
                                                              }}
                                          %>
                                       </table>
