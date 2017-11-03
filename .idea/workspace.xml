@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d540367e-0360-42dd-9e23-7622380a65f4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home1_jsp.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/ROOT/home2.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home1_jsp.class" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home1_jsp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.class" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapps/ROOT/home1.jsp" afterPath="$PROJECT_DIR$/webapps/ROOT/home1.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapps/ROOT/index.jsp" afterPath="$PROJECT_DIR$/webapps/ROOT/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home1_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/home1_jsp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java" afterPath="$PROJECT_DIR$/work/Catalina/localhost/ROOT/org/apache/jsp/index_jsp.java" />
     </list>
     <ignored path="gale.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home1.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webapps/ROOT/home1.jsp">
+      <file leaf-file-name="home2.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapps/ROOT/home2.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="269" column="59" selection-start-line="269" selection-start-column="59" selection-end-line="269" selection-end-column="59" />
+            <state relative-caret-position="374">
+              <caret line="324" column="30" selection-start-line="324" selection-start-column="30" selection-end-line="324" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -49,8 +54,9 @@
       <list>
         <option value="$PROJECT_DIR$/webapps/ROOT/home.jsp" />
         <option value="$PROJECT_DIR$/webapps/ROOT/home_basic.jsp" />
-        <option value="$PROJECT_DIR$/webapps/ROOT/index.jsp" />
         <option value="$PROJECT_DIR$/webapps/ROOT/home1.jsp" />
+        <option value="$PROJECT_DIR$/webapps/ROOT/index.jsp" />
+        <option value="$PROJECT_DIR$/webapps/ROOT/home2.jsp" />
       </list>
     </option>
   </component>
@@ -869,8 +875,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webapps/ROOT/home1.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="269" column="59" selection-start-line="269" selection-start-column="59" selection-end-line="269" selection-end-column="59" />
+        <state relative-caret-position="626">
+          <caret line="323" column="32" selection-start-line="323" selection-start-column="21" selection-end-line="323" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapps/ROOT/home2.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="324" column="30" selection-start-line="324" selection-start-column="30" selection-end-line="324" selection-end-column="30" />
           <folding />
         </state>
       </provider>

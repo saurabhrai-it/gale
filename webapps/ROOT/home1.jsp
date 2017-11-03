@@ -267,7 +267,6 @@
                     <h4 class="text-center" style="color:#111;">Error Not Matching SLA(2%)</h4>
                                          <table>
                                          <%
-                                                           String isError = "FALSE";
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
                                                              {
                                                               prodNameWithExtension  = listOfFoldersAggregate[k].getName();
@@ -300,7 +299,6 @@
                                                                                                      </tr>
 
                                         <%                                lock = "FALSE";
-                                                                          isError = "TRUE";
 
                                                                          }
                                                                   }
@@ -308,9 +306,7 @@
                                                                     continue;
 
                                                              }}
-                                                             if(isError.equals("FALSE")){
                                          %>
-                                                                    <h3><p class="text-success">No error rate is crossing SLA.</p></h3><%}%>
                                       </table>
          </div>
 
