@@ -264,57 +264,55 @@
 
 
          <div class="col-md-4 col-md-offset-1">
-                     <h4 class="text-center" style="color:#111;"> Response Time And Sample Counts For Individual Products</h4>
-                     <table class="table table-bordered table-hover" style="font-size:16px;">
-                     <thead>
-                                  <tr>
-                                    <th>Products</th>
-                                    <th>Average Response Time(Seconds)</th>
-                                    <th>Samples</th>
-                                  </tr>
-                     </thead>
-                     <tbody>
-                     <%
-                                       for(int j=0; j < listOfFoldersAggregate.length;j++)
-                                         {
-                                          prodNameWithExtension  = listOfFoldersAggregate[j].getName();
-                                          prodName               = prodNameWithExtension.replace(".csv","");
-                                          pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
-                                          String lineOverall;
-                                          String[] dataInLineOverall;
-                                          FileReader fileReaderOverall         = new FileReader(pathProductAggregate);
-                                          BufferedReader bufferedReaderOverall = new BufferedReader(fileReaderOverall);
-                                          while ((lineOverall = bufferedReaderOverall.readLine()) != null) {
-                                              if(lineOverall.startsWith("TOTAL"))
-                                              {
-                                                     dataInLineOverall        = lineOverall.split(",");
-                                                     overallSample            = dataInLineOverall[1];
-                                                     overallResponseTime      = String.format("%.03f", Float.parseFloat(dataInLineOverall[2])/1000);
-                                              }
-                                              else
-                                                continue;
-                     %>
-                     <tr>
-                         <td><%=prodName%></td>
-                         <td><%=overallResponseTime%></td>
-                         <td><%=overallSample%></td>
-                     </tr>
-                     <%
-                                         }}
-                     %>
-                   </tbody>
-                  </table>
+                    <h4 class="text-center" style="color:#111;">Error Not Matching SLA(2%)</h4>
+                                         <table>
+                                         <%
+                                                           String isError = "FALSE";
+                                                           for(int k=0; k < listOfFoldersAggregate.length;k++)
+                                                             {
+                                                              prodNameWithExtension  = listOfFoldersAggregate[k].getName();
+                                                              prodName               = prodNameWithExtension.replace(".csv","");
+                                                              pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                                                              String lock = "TRUE";
+                                                              String lineOverallSLA;
+                                                              String[] dataInLineOverallSLA;
+                                                              FileReader fileReaderOverallSLA         = new FileReader(pathProductAggregate);
+                                                              BufferedReader bufferedReaderOverallSLA = new BufferedReader(fileReaderOverallSLA);
+                                                              while ((lineOverallSLA = bufferedReaderOverallSLA.readLine()) != null) {
+                                                                  if((!lineOverallSLA.startsWith("TOTAL"))&&(!lineOverallSLA.startsWith("sampler_label")))
+                                                                  {
+                                                                         dataInLineOverallSLA   = lineOverallSLA.split(",");
+                                                                         errorSLA               = dataInLineOverallSLA[7].replace("%","");
+                                                                         Float tempErrorSLA     = Float.parseFloat(errorSLA);
+                                                                         if(tempErrorSLA>2.0)
+                                                                         {
+
+                                         %>
+                                                                                                     <tr>
+                                                                                                        <th>
+                                                                                                        <%if(lock.equals("TRUE")){%>
+                                                                                                             <%=prodName%><%}%>
+                                                                                                           <tr>
+                                                                                                                <td><%=dataInLineOverallSLA[0]%></td>
+                                                                                                                <td><%=String.format("%.02f", tempErrorSLA)%></td>
+                                                                                                          </tr>
+                                                                                                        </th>
+                                                                                                     </tr>
+
+                                        <%                                lock = "FALSE";
+                                                                          isError = "TRUE";
+
+                                                                         }
+                                                                  }
+                                                                  else
+                                                                    continue;
+
+                                                             }}
+                                                             if(isError.equals("FALSE")){
+                                         %>
+                                                                    <h3><p class="text-success">No error rate is crossing SLA.</p></h3><%}%>
+                                      </table>
          </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
