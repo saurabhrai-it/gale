@@ -283,7 +283,7 @@
                                                                   {
                                                                          dataInLineOverallSLA   = lineOverallSLA.split(",");
                                                                          errorSLA               = dataInLineOverallSLA[7].replace("%","");
-                                                                         Float tempErrorSLA     = Float.parseFloat(errorSLA);
+                                                                         Float tempErrorSLA     = Float.parseFloat(errorSLA)*100;
                                                                          if(tempErrorSLA>2.0)
                                                                          {
 
@@ -334,7 +334,7 @@
             </button>
          </div>
 
-         <table class="table table-bordered table-hover" style="font-size:14px;">
+         <table class="table table-bordered table-hover table-condensed" style="font-size:14px;">
            <thead>
              <tr>
                <th>Label</th>
@@ -377,11 +377,11 @@
                    String throughput = String.format("%.02f", Float.parseFloat(dataInLine[8]));
                    String kbpersec   = String.format("%.02f", Float.parseFloat(dataInLine[9]));
                    String errorString=error.replace("%","");
-                   float errorFloat=Float.parseFloat(errorString);
-                   if(errorFloat>=2.0)
+                   float errorFloat=Float.parseFloat(errorString)*100;
+                   if(errorFloat>2.0)
                       errorString = "<td style='color:red;font-weight:600;'>"+String.format("%.02f", errorFloat)+"</td>";
                    else
-                      errorString = "<td>"+String.format("%.02f", Float.parseFloat(errorString))+"</td>";
+                      errorString = "<td>"+String.format("%.02f", errorFloat)+"</td>";
                    String avgString;
                    if(avg>=3.0)
                     avgString = "<td style='color:red;font-weight:600;'>"+String.format("%.03f", avg)+"</td>";
