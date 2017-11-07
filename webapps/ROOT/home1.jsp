@@ -150,7 +150,7 @@
          </div>
          <div class="col-md-10 col-md-offset-2">
             <h4 class="text-center" style="color:#111;">Overall Response Time And Sample Counts For Individual Products</h4>
-            <table class="table table-bordered table-hover" style="font-size:16px;">
+            <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
                          <tr>
                            <th>Products</th>
@@ -211,7 +211,7 @@
 
          <div class="col-md-4 col-md-offset-2">
                      <h4 class="text-center" style="color:#111;">Average Response Time Above SLA(3 Sec)</h4>
-                     <table style="font-size:16px;">
+                     <table style="font-size:14px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
                                          {
@@ -263,10 +263,11 @@
 
 
 
-         <div class="col-md-4 col-md-offset-1">
+         <div class="col-md-4 col-md-offset-1" id="HideIfNoError">
                     <h4 class="text-center" style="color:#111;">Error Above SLA(2%)</h4>
-                                         <table style="font-size:16px;">
+                                         <table style="font-size:14px;">
                                          <%
+                                                           String isError = "FALSE";
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
                                                              {
                                                               prodNameWithExtension  = listOfFoldersAggregate[k].getName();
@@ -299,12 +300,20 @@
                                                                                                      </tr>
 
                                         <%                                lock = "FALSE";
+                                                                          isError = "TRUE";
                                                                          }
                                                                   }
                                                                   else
                                                                     continue;
                                                              }}
+                                                             if(isError.equals("FALSE")){
                                          %>
+                                                                <style>
+                                                                    #HideIfNoError{
+                                                                    display: none;
+                                                                    }
+                                                                </style>
+                                         <%}%>
                                       </table>
          </div>
 
@@ -320,12 +329,12 @@
          %>
          <div class="col-md-10" style="margin-left:16%;">
          <div class="text-center">
-            <button type="button" class="btn btn-outline-info btn-lg">
+            <button type="button" class="btn btn-outline-info btn-xs" style="margin-bottom:10px;">
              <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
             </button>
          </div>
 
-         <table class="table table-bordered table-hover" style="font-size:16px;">
+         <table class="table table-bordered table-hover" style="font-size:14px;">
            <thead>
              <tr>
                <th>Label</th>
