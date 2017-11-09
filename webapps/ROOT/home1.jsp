@@ -327,7 +327,7 @@
                     prodName              = prodNameWithExtension.replace(".csv","");
                     pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
-         <div class="col-md-10" style="margin-left:16%;">
+         <div class="col-md-10 col-md-offset-2">
          <div class="text-center">
             <button type="button" class="btn btn-outline-info btn-xs" style="margin-bottom:10px;">
              <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
@@ -366,6 +366,9 @@
 
                     if(label.equals("TOTAL"))
                         bold = "class='boldMaker'";
+
+                    if(label.contains("/"))
+                       label=label.replaceAll("/"," / ");
 
                    int sample        = Integer.parseInt(dataInLine[1]);
                    float avg         = Float.parseFloat(dataInLine[2])/1000;
@@ -439,7 +442,7 @@
                           for(int i=0; i < listOfFoldersResponseTime.length;i++)
                              {
                                prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
-                               prodResTime               = prodResTimeWithExtension.replace(".png","");
+                               prodResTime               = prodResTimeWithExtension.replace(".png","").replace(".PNG","");
                                pathProductResTime        = "\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
 
                     %>
