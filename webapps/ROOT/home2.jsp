@@ -177,7 +177,7 @@
 
          </div>
          <div class="col-md-4 col-md-offset-2">
-            <h4 class="text-center" style="color:#111;">Overall Response Time And Sample Counts For Individual Products</h4>
+            <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Overall Response Time And Sample Counts For Individual Products</h4>
             <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
                          <tr>
@@ -220,25 +220,8 @@
          </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
          <div class="col-md-3 col-md-offset-0">
-                     <h4 class="text-center" style="color:#111;">Average Response Time Above SLA(3 Sec)</h4>
+                     <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Average Response Time Above SLA(3 Sec)</h4>
                      <table class="table table-bordered table-hover" style="font-size:14px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
@@ -296,7 +279,7 @@
 
 
          <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
-                    <h4 class="text-center" style="color:#111;">Error Above SLA(2%)</h4>
+                    <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Error Above SLA(2%)</h4>
                                          <table class="table table-bordered table-hover" style="font-size:14px;">
                                          <%
                                                            String isError = "FALSE";
@@ -365,9 +348,9 @@
                     pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
          <div class="col-md-10 col-md-offset-2">
-         <div class="text-center">
-            <button type="button" class="btn btn-outline-info btn-xs" style="margin-bottom:10px;">
-             <h3 class="text-center" id="<%=prodName%>"><%=prodName%></h3>
+         <div class="text-center" style="background-color:#46C7C7;margin-bottom:10px;margin-top:25px;border-radius:10px;">
+            <button type="button" class="btn btn-outline-info btn-xs" style="background-color: Transparent;border: none;outline:none;" >
+             <h3 class="text-center" id="<%=prodName%>" style="color:white;"><%=prodName%></h3>
             </button>
          </div>
 
