@@ -148,7 +148,7 @@
                     <%}%>
          </ul>
          </div>
-         <div class="col-md-6 col-md-offset-4">
+         <div class="col-md-3 col-md-offset-2">
             <h4 class="text-center" style="color:#111;">Overall Response Time And Sample Counts For Individual Products</h4>
             <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
@@ -181,7 +181,7 @@
             %>
             <tr>
                 <td><%=prodName%></td>
-                <td><%=overallResponseTime%></td>
+                <td class="text-center"><%=overallResponseTime%></td>
                 <td><%=overallSample%></td>
             </tr>
             <%
@@ -209,7 +209,7 @@
 
 
 
-         <div class="col-md-4 col-md-offset-2">
+         <div class="col-md-3 col-md-offset-0">
                      <h4 class="text-center" style="color:#111;">Average Response Time Above SLA(3 Sec)</h4>
                      <table style="font-size:14px;">
                      <%
@@ -263,7 +263,7 @@
 
 
 
-         <div class="col-md-4 col-md-offset-1" id="HideIfNoError">
+         <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
                     <h4 class="text-center" style="color:#111;">Error Above SLA(2%)</h4>
                                          <table style="font-size:14px;">
                                          <%
