@@ -107,9 +107,9 @@
         </div>
       </nav>
 
-   <div class="footer" style="position:fixed;z-index:999999;bottom:0;left:0;">
+   <div class="footer" style="position:fixed;z-index:999999;bottom:0;right:0;">
    <a href="#goTop" style="text-decoration:none;">
-   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP">
+   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP" style="background-color: Transparent;border: none;outline:none;">
      <span class="glyphicon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
      <strong>TOP</strong>
    </button></a>
@@ -157,7 +157,7 @@
          </ul>
 
          <ul style="list-style:none;padding:0px">
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-4 col-md-offset-2">
                     <%
                            for(int i=0; i < listOfFoldersAggregate.length;i++)
                              {
@@ -477,7 +477,7 @@
               </ul>
 
               <ul style="list-style:none;padding:0px">
-              <div class="col-md-4 col-md-offset-4">
+              <div class="col-md-4 col-md-offset-2">
                                   <%
                                          for(int i=0; i < listOfFoldersResponseTime.length;i++)
                                            {
