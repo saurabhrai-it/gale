@@ -56,6 +56,10 @@
     .boldMaker{
      font-weight:600;
     }
+
+    th{
+     background-color:#ADD8E6;
+    }
 	
     </style>
 </head>
@@ -211,7 +215,7 @@
 
          <div class="col-md-3 col-md-offset-0">
                      <h4 class="text-center" style="color:#111;">Average Response Time Above SLA(3 Sec)</h4>
-                     <table style="font-size:14px;">
+                     <table class="table table-bordered table-hover" style="font-size:14px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
                                          {
@@ -233,16 +237,20 @@
                                                      {
 
                      %>
-                                                                                 <tr>
-                                                                                    <th>
-                                                                                    <%if(lock.equals("TRUE")){%>
-                                                                                         <%=prodName%><%}%>
+                                                                                 <thead>
+                                                                                    <tr>
+                                                                                    <%if(lock.equals("TRUE"))
+                                                                                      {%>
+                                                                                         <th colspan=2 class="text-center"><%=prodName%></th>
+                                                                                      <%}%>
+                                                                                    </tr>
+                                                                                 </thead>
+                                                                                 <tbody>
                                                                                        <tr>
                                                                                             <td><%=dataInLineOverallSLA[0]%></td>
                                                                                             <td><%=String.format("%.03f", tempAvgResSLA)%></td>
                                                                                       </tr>
-                                                                                    </th>
-                                                                                 </tr>
+                                                                                 </tbody>
 
                     <%                                lock = "FALSE";
 
@@ -265,7 +273,7 @@
 
          <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
                     <h4 class="text-center" style="color:#111;">Error Above SLA(2%)</h4>
-                                         <table style="font-size:14px;">
+                                         <table class="table table-bordered table-hover" style="font-size:14px;">
                                          <%
                                                            String isError = "FALSE";
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
@@ -288,16 +296,21 @@
                                                                          {
 
                                          %>
-                                                                                                     <tr>
-                                                                                                        <th>
-                                                                                                        <%if(lock.equals("TRUE")){%>
-                                                                                                             <%=prodName%><%}%>
+                                                                                                     <thead>
+                                                                                                        <tr>
+                                                                                                           <%if(lock.equals("TRUE"))
+                                                                                                           {%>
+                                                                                                             <th colspan=2 class="text-center"><%=prodName%></th>
+                                                                                                           <%}%>
+                                                                                                        </tr>
+                                                                                                        </thead>
+                                                                                                        <tbody>
                                                                                                            <tr>
                                                                                                                 <td><%=dataInLineOverallSLA[0]%></td>
                                                                                                                 <td><%=String.format("%.02f", tempErrorSLA)%></td>
                                                                                                           </tr>
-                                                                                                        </th>
-                                                                                                     </tr>
+                                                                                                        </tbody>
+
 
                                         <%                                lock = "FALSE";
                                                                           isError = "TRUE";
