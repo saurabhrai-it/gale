@@ -60,7 +60,7 @@
     th{
      background-color:#ADD8E6;
     }
-	
+
     </style>
 </head>
 <%
@@ -117,7 +117,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="AggregateReports">
       <div class="row" style="margin-right:0;">
-      <div class="col-md-2" style="position:absolute;background-color:#f8f8f8;">
+      <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
         <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
@@ -136,23 +136,47 @@
                   String overallResponseTime;String overallSample = "";
                   String averageResponseTimeSLA = "";String errorSLA = "";
            %>
-           <ul style="list-style:none;">
+
+           <ul style="list-style:none;padding:0px">
+           <div class="col-md-4">
            <%
                   for(int i=0; i < listOfFoldersAggregate.length;i++)
                     {
                      prodNameWithExtension  = listOfFoldersAggregate[i].getName();
                      prodName               = prodNameWithExtension.replace(".csv","");
                      pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                     if(i<18){
              %>
            <li class="addHoverManager">
-             <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
+             <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
                 <%=prodName%>
              </a>
            </li>
-                    <%}%>
-         </ul>
+                    <%}}%>
          </div>
-         <div class="col-md-3 col-md-offset-2">
+         </ul>
+
+         <ul style="list-style:none;padding:0px">
+                    <div class="col-md-4 col-md-offset-4">
+                    <%
+                           for(int i=0; i < listOfFoldersAggregate.length;i++)
+                             {
+                              prodNameWithExtension  = listOfFoldersAggregate[i].getName();
+                              prodName               = prodNameWithExtension.replace(".csv","");
+                              pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
+                              if(i>17){
+                      %>
+                    <li class="addHoverManager">
+                      <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
+                         <%=prodName%>
+                      </a>
+                    </li>
+                             <%}}%>
+         </div>
+         </ul>
+
+         </div>
+         <div class="col-md-4 col-md-offset-2">
             <h4 class="text-center" style="color:#111;">Overall Response Time And Sample Counts For Individual Products</h4>
             <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
@@ -431,23 +455,45 @@
 
       <div class="tab-pane" id="ResponseTime">
         <div class="row" style="margin-right:0;">
-         <div class="col-md-2" style="position:absolute;background-color:#f8f8f8;">
+         <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
           <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
-          <ul style="list-style:none;">
+          <ul style="list-style:none;padding:0px">
+              <div class="col-md-4">
                     <%
                            for(int i=0; i < listOfFoldersResponseTime.length;i++)
                              {
                               prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
                               prodResTime               = prodResTimeWithExtension.replace(".png","");
                               pathProductResTime   = fullFolderLocationResponseTime+"\\"+prodResTimeWithExtension;
+                              if(i<18){
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;padding-left:40px;">
+                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
                          <%=prodResTime%>
                       </a>
                     </li>
-                             <%}%>
-          </ul>
+                             <%}}%>
+              <div>
+              </ul>
+
+              <ul style="list-style:none;padding:0px">
+              <div class="col-md-4 col-md-offset-4">
+                                  <%
+                                         for(int i=0; i < listOfFoldersResponseTime.length;i++)
+                                           {
+                                            prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
+                                            prodResTime               = prodResTimeWithExtension.replace(".png","");
+                                            pathProductResTime   = fullFolderLocationResponseTime+"\\"+prodResTimeWithExtension;
+                                            if(i>17){
+                                    %>
+                                  <li class="addHoverManager">
+                                    <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
+                                       <%=prodResTime%>
+                                    </a>
+                                  </li>
+                                           <%}}%>
+              <div>
+              </ul>
          </div>
 
                 <div class="col-md-10 col-md-offset-2">
