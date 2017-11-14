@@ -60,7 +60,6 @@
     th{
      background-color:#ADD8E6;
     }
-
     </style>
 </head>
 <%
@@ -89,7 +88,7 @@
              }
           }
 %>
-<body>
+<body style="-webkit-print-color-adjust: exact;">
       <nav class="navbar navbar-default">
         <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
@@ -177,7 +176,7 @@
 
          </div>
          <div class="col-md-4 col-md-offset-2">
-            <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Overall Response Time And Sample Counts For Individual Products</h4>
+            <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Overall Average Response Time And Sample Counts For Individual Products</h4>
             <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
                          <tr>
@@ -221,7 +220,7 @@
 
 
          <div class="col-md-3 col-md-offset-0">
-                     <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Average Response Time Above SLA(3 Sec)</h4>
+                     <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Average Response Time Above SLA(>3 Sec)</h4>
                      <table class="table table-bordered table-hover" style="font-size:14px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
@@ -279,7 +278,7 @@
 
 
          <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
-                    <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Error Above SLA(2%)</h4>
+                    <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Error Above SLA(>2%)</h4>
                                          <table class="table table-bordered table-hover" style="font-size:14px;">
                                          <%
                                                            String isError = "FALSE";
@@ -314,7 +313,7 @@
                                                                                                         <tbody>
                                                                                                            <tr>
                                                                                                                 <td><%=dataInLineOverallSLA[0]%></td>
-                                                                                                                <td><%=String.format("%.02f", tempErrorSLA)%></td>
+                                                                                                                <td><%=String.format("%.02f", tempErrorSLA)+"%"%></td>
                                                                                                           </tr>
                                                                                                         </tbody>
 
