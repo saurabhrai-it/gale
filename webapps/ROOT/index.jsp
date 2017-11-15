@@ -11,7 +11,7 @@
 
     <script>
         var testNumber = prompt("Please enter the load test number(eg. 1947)", "2148");
-        window.location = "home2.jsp?testNumber=" + encodeURIComponent(testNumber);
+        window.location = "home3.jsp?testNumber=" + encodeURIComponent(testNumber);
     </script>
 </head>
 </html>

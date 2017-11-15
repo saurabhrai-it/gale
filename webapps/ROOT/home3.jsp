@@ -64,7 +64,7 @@
 </head>
 <%
      //String binDir                       = System.getProperty("user.dir").toString();
-     String currDir                        = "../webapps/ROOT/Reports";
+     String currDir                        = "..\\webapps\\ROOT\\Reports";
      String name                           = request.getParameter("testNumber");
      String fullFolderLocationAggregate    = "";
      String fullFolderLocationResponseTime = "";
@@ -124,8 +124,8 @@
           if(errorMsg=="")
                {
                   desiredFolder                      = name + "_" + testValue;
-                  fullFolderLocationAggregate        = currDir +"/"+desiredFolder+"/AggregateReport";
-                  fullFolderLocationResponseTime     = currDir +"/"+desiredFolder+"/ResponseTime";
+                  fullFolderLocationAggregate        = currDir +"\\"+desiredFolder+"\\AggregateReport";
+                  fullFolderLocationResponseTime     = currDir +"\\"+desiredFolder+"\\ResponseTime";
                   File folderAggregate               = new File(fullFolderLocationAggregate);
                   File folderResponseTime            = new File(fullFolderLocationResponseTime);
                   File[] listOfFoldersAggregate      = folderAggregate.listFiles();
@@ -145,7 +145,7 @@
                     {
                      prodNameWithExtension  = listOfFoldersAggregate[i].getName();
                      prodName               = prodNameWithExtension.replace(".csv","");
-                     pathProductAggregate   = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                     pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
                      if(i<18){
              %>
            <li class="addHoverManager">
@@ -164,7 +164,7 @@
                              {
                               prodNameWithExtension  = listOfFoldersAggregate[i].getName();
                               prodName               = prodNameWithExtension.replace(".csv","");
-                              pathProductAggregate   = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                              pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
                               if(i>17){
                       %>
                     <li class="addHoverManager">
@@ -193,7 +193,7 @@
                                 {
                                  prodNameWithExtension  = listOfFoldersAggregate[j].getName();
                                  prodName               = prodNameWithExtension.replace(".csv","");
-                                 pathProductAggregate   = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                                 pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
                                  String lineOverall;
                                  String[] dataInLineOverall;
                                  FileReader fileReaderOverall         = new FileReader(pathProductAggregate);
@@ -229,7 +229,7 @@
                                          {
                                           prodNameWithExtension  = listOfFoldersAggregate[k].getName();
                                           prodName               = prodNameWithExtension.replace(".csv","");
-                                          pathProductAggregate   = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                                          pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
                                           String lock = "TRUE";
                                           String lineOverallSLA;
                                           String[] dataInLineOverallSLA;
@@ -288,7 +288,7 @@
                                                              {
                                                               prodNameWithExtension  = listOfFoldersAggregate[k].getName();
                                                               prodName               = prodNameWithExtension.replace(".csv","");
-                                                              pathProductAggregate   = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                                                              pathProductAggregate   = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
                                                               String lock = "TRUE";
                                                               String lineOverallSLA;
                                                               String[] dataInLineOverallSLA;
@@ -346,7 +346,7 @@
             {
                     prodNameWithExtension = listOfFoldersAggregate[i].getName();
                     prodName              = prodNameWithExtension.replace(".csv","");
-                    pathProductAggregate  = fullFolderLocationAggregate+"/"+prodNameWithExtension;
+                    pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
          <div class="col-md-10 col-md-offset-2">
          <div class="text-center" style="background-color:#46C7C7;margin-bottom:10px;margin-top:25px;border-radius:10px;">
@@ -448,7 +448,7 @@
                              {
                               prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
                               prodResTime               = prodResTimeWithExtension.replace(".png","");
-                              pathProductResTime   = fullFolderLocationResponseTime+"/"+prodResTimeWithExtension;
+                              pathProductResTime   = fullFolderLocationResponseTime+"\\"+prodResTimeWithExtension;
                               if(i<18){
                       %>
                     <li class="addHoverManager">
@@ -467,7 +467,7 @@
                                            {
                                             prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
                                             prodResTime               = prodResTimeWithExtension.replace(".png","");
-                                            pathProductResTime   = fullFolderLocationResponseTime+"/"+prodResTimeWithExtension;
+                                            pathProductResTime   = fullFolderLocationResponseTime+"\\"+prodResTimeWithExtension;
                                             if(i>17){
                                     %>
                                   <li class="addHoverManager">
@@ -486,7 +486,7 @@
                              {
                                prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
                                prodResTime               = prodResTimeWithExtension.replace(".png","").replace(".PNG","");
-                               pathProductResTime        = "Reports/"+desiredFolder+"/ResponseTime/"+prodResTimeWithExtension;
+                               pathProductResTime        = "\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
 
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>

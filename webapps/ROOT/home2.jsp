@@ -486,7 +486,7 @@
                              {
                                prodResTimeWithExtension  = listOfFoldersResponseTime[i].getName();
                                prodResTime               = prodResTimeWithExtension.replace(".png","").replace(".PNG","");
-                               pathProductResTime        = "\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
+                               pathProductResTime        = "Reports\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
 
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
