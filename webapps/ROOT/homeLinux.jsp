@@ -49,8 +49,9 @@
       font-size:14px;
       padding:4px 8px;
     }
-    li.addHoverManager:hover{
-        background-color: #e3e3e3;
+
+    #transit:hover{
+         background-color: #e3e3e3;
     }
 
     .boldMaker{
@@ -491,7 +492,7 @@
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
                     <div class="text-center">
-                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400/>
+                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400 style="padding:0px;"/>
 
                     </div>
                     <%}%>
