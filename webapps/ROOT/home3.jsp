@@ -58,8 +58,16 @@
      background-color:#ADD8E6;
     }
 
+    #transit{
+    color:#777;
+    cursor:pointer;
+    text-decoration:none;
+    }
+
     #transit:hover{
-     background-color: #e3e3e3;
+     color:white;
+     background-color: #808080;
+     font-weight:700;
     }
     </style>
 </head>
@@ -89,14 +97,15 @@
              }
           }
 %>
-<body style="-webkit-print-color-adjust: exact;">
+<body>
+    <div>
       <nav class="navbar navbar-default">
         <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
-            <a href="#" id="goTop"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
-            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
-            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
-            <a class="navbar-brand" href="#">DURATION : <%=testTime%></a>
+            <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a class="navbar-brand" style="cursor:default;" href="#">DURATION : <%=testTime%></a>
           </div>
           <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
@@ -106,6 +115,7 @@
           </div>
         </div>
       </nav>
+    </div>
 
    <div class="footer" style="position:fixed;z-index:999999;bottom:0;right:0;">
    <a href="#goTop" style="text-decoration:none;">
@@ -150,7 +160,7 @@
                      if(i<18){
              %>
            <li class="addHoverManager">
-             <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
+             <a class="btn cont" id="transit" href="#<%=prodName%>">
                 <%=prodName%>
              </a>
            </li>
@@ -169,7 +179,7 @@
                               if(i>17){
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
+                      <a class="btn cont" id="transit" href="#<%=prodName%>">
                          <%=prodName%>
                       </a>
                     </li>
@@ -453,7 +463,7 @@
                               if(i<18){
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
+                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime">
                          <%=prodResTime%>
                       </a>
                     </li>
@@ -472,7 +482,7 @@
                                             if(i>17){
                                     %>
                                   <li class="addHoverManager">
-                                    <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
+                                    <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime">
                                        <%=prodResTime%>
                                     </a>
                                   </li>
