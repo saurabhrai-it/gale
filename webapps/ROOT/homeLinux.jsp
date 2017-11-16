@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -44,24 +45,6 @@
         });
 
     </script>
-    <style>
-    .btn{
-      font-size:14px;
-      padding:4px 8px;
-    }
-
-    #transit:hover{
-         background-color: #e3e3e3;
-    }
-
-    .boldMaker{
-     font-weight:600;
-    }
-
-    th{
-     background-color:#ADD8E6;
-    }
-    </style>
 </head>
 <%
      //String binDir                       = System.getProperty("user.dir").toString();
@@ -89,14 +72,15 @@
              }
           }
 %>
-<body style="-webkit-print-color-adjust: exact;">
+<body>
+    <div>
       <nav class="navbar navbar-default">
-        <div class="container" style="padding-left:0px;">
+        <div class="container padLeftZero">
           <div class="navbar-header">
-            <a href="#" id="goTop"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
-            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
-            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
-            <a class="navbar-brand" href="#">DURATION : <%=testTime%></a>
+            <a href="#" id="goTop"><img src="../../qaLogo.jpg" height="50px"/></a>
+            <a class="navbar-brand" id="noCursor" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" id="noCursor" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a class="navbar-brand" id="noCursor" href="#">DURATION : <%=testTime%></a>
           </div>
           <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
@@ -106,19 +90,20 @@
           </div>
         </div>
       </nav>
+    </div>
 
-   <div class="footer" style="position:fixed;z-index:999999;bottom:0;right:0;">
-   <a href="#goTop" style="text-decoration:none;">
-   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP" style="background-color: Transparent;border: none;outline:none;">
+   <div class="footer">
+   <a href="#goTop" id="topAnchor">
+   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP" id="topButton">
      <span class="glyphicon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
      <strong>TOP</strong>
    </button></a>
     </div>
     <div class="tab-content">
       <div class="tab-pane active" id="AggregateReports">
-      <div class="row" style="margin-right:0;">
-      <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
-        <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
+      <div class="row prdNameDiv">
+      <div class="col-md-2 prdNameCol">
+        <h4 class="text-center prdNm">PRODUCT NAME</h4>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%
@@ -139,7 +124,7 @@
                   String averageResponseTimeSLA = "";String errorSLA = "";
            %>
 
-           <ul style="list-style:none;padding:0px">
+           <ul>
            <div class="col-md-4">
            <%
                   for(int i=0; i < listOfFoldersAggregate.length;i++)
@@ -150,7 +135,7 @@
                      if(i<18){
              %>
            <li class="addHoverManager">
-             <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
+             <a class="btn cont" id="transit" href="#<%=prodName%>">
                 <%=prodName%>
              </a>
            </li>
@@ -158,7 +143,7 @@
          </div>
          </ul>
 
-         <ul style="list-style:none;padding:0px">
+         <ul>
                     <div class="col-md-4 col-md-offset-2">
                     <%
                            for(int i=0; i < listOfFoldersAggregate.length;i++)
@@ -169,7 +154,7 @@
                               if(i>17){
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodName%>" style="color:#777;cursor:pointer;text-decoration:none;">
+                      <a class="btn cont" id="transit" href="#<%=prodName%>">
                          <%=prodName%>
                       </a>
                     </li>
@@ -179,8 +164,8 @@
 
          </div>
          <div class="col-md-4 col-md-offset-2">
-            <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Overall Average Response Time And Sample Counts For Individual Products</h4>
-            <table class="table table-bordered table-hover" style="font-size:14px;">
+            <h4 class="text-center tabOverallAvg">Overall Average Response Time And Sample Counts For Individual Products</h4>
+            <table class="table table-bordered table-hover tabFont">
             <thead>
                          <tr>
                            <th>Products</th>
@@ -223,8 +208,8 @@
 
 
          <div class="col-md-3 col-md-offset-0">
-                     <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Average Response Time Above SLA(>3 Sec)</h4>
-                     <table class="table table-bordered table-hover" style="font-size:14px;">
+                     <h4 class="text-center tabAvgRes">Average Response Time Above SLA(>3 Sec)</h4>
+                     <table class="table table-bordered table-hover tabFont">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
                                          {
@@ -281,8 +266,8 @@
 
 
          <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
-                    <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Error Above SLA(>2%)</h4>
-                                         <table class="table table-bordered table-hover" style="font-size:14px;">
+                    <h4 class="text-center tabError">Error Above SLA(>2%)</h4>
+                                         <table class="table table-bordered table-hover tabFont">
                                          <%
                                                            String isError = "FALSE";
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
@@ -350,13 +335,13 @@
                     pathProductAggregate  = fullFolderLocationAggregate+"/"+prodNameWithExtension;
          %>
          <div class="col-md-10 col-md-offset-2">
-         <div class="text-center" style="background-color:#46C7C7;margin-bottom:10px;margin-top:25px;border-radius:10px;">
-            <button type="button" class="btn btn-outline-info btn-xs" style="background-color: Transparent;border: none;outline:none;" >
-             <h3 class="text-center" id="<%=prodName%>" style="color:white;"><%=prodName%></h3>
+         <div class="text-center aggRepProdName">
+            <button type="button" class="btn btn-outline-info btn-xs aggRepProdButton">
+             <h3 class="text-center aggRepProdNameColor" id="<%=prodName%>"><%=prodName%></h3>
             </button>
          </div>
 
-         <table class="table table-bordered table-hover table-condensed" style="font-size:14px;">
+         <table class="table table-bordered table-hover table-condensed tabFont">
            <thead>
              <tr>
                <th>Label</th>
@@ -439,10 +424,10 @@
 
 
       <div class="tab-pane" id="ResponseTime">
-        <div class="row" style="margin-right:0;">
-         <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
-          <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
-          <ul style="list-style:none;padding:0px">
+        <div class="row prdNameDiv">
+         <div class="col-md-2 prdNameCol">
+          <h4 class="text-center prdNm">PRODUCT NAME</h4>
+          <ul>
               <div class="col-md-4">
                     <%
                            for(int i=0; i < listOfFoldersResponseTime.length;i++)
@@ -453,7 +438,7 @@
                               if(i<18){
                       %>
                     <li class="addHoverManager">
-                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
+                      <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime">
                          <%=prodResTime%>
                       </a>
                     </li>
@@ -461,7 +446,7 @@
               <div>
               </ul>
 
-              <ul style="list-style:none;padding:0px">
+              <ul>
               <div class="col-md-4 col-md-offset-2">
                                   <%
                                          for(int i=0; i < listOfFoldersResponseTime.length;i++)
@@ -472,7 +457,7 @@
                                             if(i>17){
                                     %>
                                   <li class="addHoverManager">
-                                    <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime" style="color:#777;cursor:pointer;text-decoration:none;">
+                                    <a class="btn cont" id="transit" href="#<%=prodResTime%>ResTime">
                                        <%=prodResTime%>
                                     </a>
                                   </li>
@@ -492,7 +477,7 @@
                     %>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
                     <div class="text-center">
-                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400 style="padding:0px;"/>
+                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail padZero" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400/>
 
                     </div>
                     <%}%>
