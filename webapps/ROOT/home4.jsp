@@ -10,7 +10,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -44,12 +43,75 @@
           });
         });
 
+		
+		//AJAX
+			function getComparisonTable(baselineLoadTestNumber,currLoadTestNumber,currLoadTestDuration,isBaselineFilePresent) {
+				document.getElementById("submitBaselineNumber").style.display = "none";
+				var xhttp;
+				if (baselineLoadTestNumber.length == 0) { 
+					document.getElementById("comparisonContent").innerHTML = "";
+					return;
+				}
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("comparisonContent").innerHTML = this.responseText;
+					}
+				};
+			xhttp.open("POST","baselineAdded.jsp?baselineLoadTestNumber="+baselineLoadTestNumber+"&currLoadTestNumber="+currLoadTestNumber+"&currLoadTestDuration="+currLoadTestDuration+"&isBaselineFilePresent="+isBaselineFilePresent,true);
+			xhttp.send();
+			}	
+
+
+
+			function getComparisonTable(currLoadTestNumber,currLoadTestDuration,isBaselineFilePresent) {
+				document.getElementById("submitBaselineNumber").style.display = "none";
+				var xhttp;
+				if (baselineLoadTestNumber.length == 0) { 
+					document.getElementById("comparisonContent").innerHTML = "";
+					return;
+				}
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("comparisonContent").innerHTML = this.responseText;
+					}
+				};
+			xhttp.open("POST","baselineAdded.jsp?currLoadTestNumber="+currLoadTestNumber+"&currLoadTestDuration="+currLoadTestDuration+"&isBaselineFilePresent="+isBaselineFilePresent,true);
+			xhttp.send();
+			}				
     </script>
+    <style>
+    .btn{
+      font-size:14px;
+      padding:4px 8px;
+    }
+
+    .boldMaker{
+     font-weight:600;
+    }
+
+    th{
+     background-color:#ADD8E6;
+    }
+
+    #transit{
+    color:#777;
+    cursor:pointer;
+    text-decoration:none;
+    }
+
+    #transit:hover{
+     color:white;
+     background-color: #808080;
+     font-weight:700;
+    }
+    </style>
 </head>
 <%
      //String binDir                       = System.getProperty("user.dir").toString();
      String currDir                        = "..\\webapps\\ROOT\\Reports";
-     String name                           = request.getParameter("testNumber");
+     String name                           = request.getParameter("currLoadTestNumber");
      String fullFolderLocationAggregate    = "";
      String fullFolderLocationResponseTime = "";
      String desiredFolder                  = "";
@@ -73,42 +135,42 @@
           }
 %>
 <body>
-    <div style="position:fixed;z-index:90;margin-top:-75px;" class="col-md-12">
+    <div>
       <nav class="navbar navbar-default">
-        <div class="container">
+        <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
-            <a href="#" id="goTop"><img src="../../qaLogo.jpg" height="50px"/></a>
-            <a class="navbar-brand" id="noCursor" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
-            <a class="navbar-brand" id="noCursor" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
-            <a class="navbar-brand" id="noCursor" href="#">DURATION : <%=testTime%></a>
+            <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a class="navbar-brand" style="cursor:default;" href="#">DURATION : <%=testTime%></a>
           </div>
           <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="#AggregateReports" data-toggle="tab">Aggregate Reports</a></li>
               <li><a href="#ResponseTime" data-toggle="tab">Response Time Graphs</a></li>
+              <li><a href="#ComparisonTab" data-toggle="tab">Comparison</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </div>
 
-   <div class="footer">
-   <a href="#goTop" id="topAnchor">
-   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP" id="topButton">
+   <div class="footer" style="position:fixed;z-index:999999;bottom:0;right:0;">
+   <a href="#goTop" style="text-decoration:none;">
+   <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="GO TOP" style="background-color: Transparent;border: none;outline:none;">
      <span class="glyphicon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
      <strong>TOP</strong>
    </button></a>
     </div>
-	
-    <div class="tab-content" style="margin-top:75px;">
+    <div class="tab-content">
       <div class="tab-pane active" id="AggregateReports">
-      <div class="row prdNameDiv">
-      <div class="col-md-2 prdNameCol">
-        <h4 class="text-center prdNm">PRODUCT NAME</h4>
+      <div class="row" style="margin-right:0;">
+      <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
+        <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%
-          if(errorMsg=="")
+          if(!errorMsg.contains("Unable to fetch data"))
                {
                   desiredFolder                      = name + "_" + testValue;
                   fullFolderLocationAggregate        = currDir +"\\"+desiredFolder+"\\AggregateReport";
@@ -125,7 +187,7 @@
                   String averageResponseTimeSLA = "";String errorSLA = "";
            %>
 
-           <ul>
+           <ul style="list-style:none;padding:0px">
            <div class="col-md-4">
            <%
                   for(int i=0; i < listOfFoldersAggregate.length;i++)
@@ -144,7 +206,7 @@
          </div>
          </ul>
 
-         <ul>
+         <ul style="list-style:none;padding:0px">
                     <div class="col-md-4 col-md-offset-2">
                     <%
                            for(int i=0; i < listOfFoldersAggregate.length;i++)
@@ -165,8 +227,8 @@
 
          </div>
          <div class="col-md-4 col-md-offset-2">
-            <h4 class="text-center tabOverallAvg">Overall Average Response Time And Sample Counts For Individual Products</h4>
-            <table class="table table-bordered table-hover tabFont">
+            <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Overall Average Response Time And Sample Counts For Individual Products</h4>
+            <table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
                          <tr>
                            <th>Products</th>
@@ -209,8 +271,8 @@
 
 
          <div class="col-md-3 col-md-offset-0">
-                     <h4 class="text-center tabAvgRes">Average Response Time Above SLA(>3 Sec)</h4>
-                     <table class="table table-bordered table-hover tabFont">
+                     <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Average Response Time Above SLA(>3 Sec)</h4>
+                     <table class="table table-bordered table-hover" style="font-size:14px;">
                      <%
                                        for(int k=0; k < listOfFoldersAggregate.length;k++)
                                          {
@@ -267,8 +329,8 @@
 
 
          <div class="col-md-3 col-md-offset-0" id="HideIfNoError">
-                    <h4 class="text-center tabError">Error Above SLA(>2%)</h4>
-                                         <table class="table table-bordered table-hover tabFont">
+                    <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Error Above SLA(>2%)</h4>
+                                         <table class="table table-bordered table-hover" style="font-size:14px;">
                                          <%
                                                            String isError = "FALSE";
                                                            for(int k=0; k < listOfFoldersAggregate.length;k++)
@@ -336,13 +398,13 @@
                     pathProductAggregate  = fullFolderLocationAggregate+"\\"+prodNameWithExtension;
          %>
          <div class="col-md-10 col-md-offset-2">
-         <div class="text-center aggRepProdName"  id="<%=prodName%>">
-            <button type="button" class="btn btn-outline-info btn-xs aggRepProdButton" >
-             <h3 class="text-center aggRepProdNameColor"><%=prodName%></h3>
+         <div class="text-center" style="background-color:#46C7C7;margin-bottom:10px;margin-top:25px;border-radius:10px;">
+            <button type="button" class="btn btn-outline-info btn-xs" style="background-color: Transparent;border: none;outline:none;" >
+             <h3 class="text-center" id="<%=prodName%>" style="color:white;"><%=prodName%></h3>
             </button>
          </div>
 
-         <table class="table table-bordered table-hover table-condensed tabFont">
+         <table class="table table-bordered table-hover table-condensed" style="font-size:14px;">
            <thead>
              <tr>
                <th>Label</th>
@@ -425,10 +487,10 @@
 
 
       <div class="tab-pane" id="ResponseTime">
-        <div class="row prdNameDiv">
-         <div class="col-md-2 prdNameCol" style="z-index:90;">
-          <h4 class="text-center prdNm">PRODUCT NAME</h4>
-          <ul>
+        <div class="row" style="margin-right:0;">
+         <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
+          <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
+          <ul style="list-style:none;padding:0px">
               <div class="col-md-4">
                     <%
                            for(int i=0; i < listOfFoldersResponseTime.length;i++)
@@ -447,7 +509,7 @@
               </div>
               </ul>
 
-              <ul>
+              <ul style="list-style:none;padding:0px">
               <div class="col-md-4 col-md-offset-2">
                                   <%
                                          for(int i=0; i < listOfFoldersResponseTime.length;i++)
@@ -467,7 +529,7 @@
               </ul>
          </div>
 
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-2">
                     <%
                           for(int i=0; i < listOfFoldersResponseTime.length;i++)
                              {
@@ -476,14 +538,9 @@
                                pathProductResTime        = "Reports\\"+desiredFolder+"\\ResponseTime\\"+prodResTimeWithExtension;
 
                     %>
-					<style>
-				      #<%=prodResTime%>ResTime:target{
-					         margin-top:300px;
-						}
-					</style>
                     <h3 class="text-center" id="<%=prodResTime%>ResTime"><%=prodResTime%></h3>
                     <div class="text-center">
-                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail padZero" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400/>
+                     <img src="<%=pathProductResTime%>"  class="img-fluid img-thumbnail" alt="<%=prodResTime%> : Response Time Graph" width=700 height=400 style="padding:0px;"/>
 
                     </div>
                     <%}%>
@@ -491,8 +548,60 @@
         </div>
       </div>
 
+	  
+	  
+	  
+	  
+	  
+	   <div class="tab-pane" id="ComparisonTab">
+	   
+	   <%
+	        String isBaselineFilePresent = "false";
+			File[] fullBaseFolder = new File(currDir +"\\"+desiredFolder).listFiles();
+			for(int i=0; i < fullBaseFolder.length;i++)
+			{
+				if(fullBaseFolder[i].getName().contains("BaselineTestNum"))
+				{
+					isBaselineFilePresent = "true";
+					break;
+				}
+			}
+			if(!isBaselineFilePresent.equals("true"))
+			{
+		%>
+				<div class="jumbotron col-md-6 col-md-offset-3 text-center"  id="submitBaselineNumber">
+					<h3>Please Enter Baseline Test Number : </h3>
+					<input type="text" name="baselineLoadTestNumber" id="baselineLoadTestNumberId">
+					<input type="hidden" name="currLoadTestNumber" id="currLoadTestNumberId" value="<%=name%>">
+					<input type="hidden" name="currLoadTestDuration" id="currLoadTestDurationId" value="<%=testValue%>">
+					<input type="hidden" name="isBaselineFilePresent" id="isBaselineFilePresentId" value="false">
+				    <input type="Button" value = "Submit" onClick="getComparisonTable(baselineLoadTestNumberId.value,currLoadTestNumberId.value,currLoadTestDurationId.value,isBaselineFilePresentId.value)"/>
+				</div>
+		<%
+			}
+			else
+			{
+				FileReader fileReaderBaselineTest = new FileReader(currDir +"\\"+desiredFolder+"\\BaselineTestNum.txt");
+				BufferedReader bufferedfileReaderBaselineTest = new BufferedReader(fileReaderBaselineTest);
+				String baselineLoadTestNumber = bufferedfileReaderBaselineTest.readLine();
+		%>
+					<div>
+						<h1>
+							Baseline Test Number : <%=baselineLoadTestNumber%><br/>
+							Current Test Number :<%=name%>
+						</h1>
+					</div>
+		<%	
+				bufferedfileReaderBaselineTest.close();
+				fileReaderBaselineTest.close();
+		    }
+	   %>
+	   <div id="comparisonContent">
+	   </div>
+	   
+      </div>
       <%}%>
-<%=errorMsg%>
-</div>
+   </div>
+   <%=errorMsg%>
 </body>
 </html>
