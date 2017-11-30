@@ -2,21 +2,15 @@
 <%@ page import="java.io.*" %>
 <%
 	String baselineLoadTestNumber = "";
-	String currLoadTestNumber     = request.getParameter("currLoadTestNumber");
-	String currLoadTestDuration   = request.getParameter("currLoadTestDuration");
-	if(request.getParameter("isBaselineFilePresent").equals("false"))
-	{
-		baselineLoadTestNumber = request.getParameter("baselineLoadTestNumber");
-		String currDir = "..\\webapps\\ROOT\\Reports";
+	String currLoadTestNumber     = (String)session.getAttribute("name");
+	String currLoadTestDuration   = (String)session.getAttribute("testValue");
+	    baselineLoadTestNumber = request.getParameter("baselineLoadTestNumber");
+		String currDir = (String)session.getAttribute("currDir");
 		String desiredFolder = currLoadTestNumber+"_"+currLoadTestDuration;
 		FileWriter baselineFileWriter = new FileWriter(currDir +"\\"+desiredFolder+"\\BaselineTestNum.txt",true);
 		baselineFileWriter.write(baselineLoadTestNumber);
 		baselineFileWriter.close();
-	}
 %>
-<div >
-	<h1>
-		Baseline Test Number : <%=baselineLoadTestNumber%><br/>
-		Current Test Number :<%=currLoadTestNumber%>
-	</h1>
+<div class="jumbotron text-center">
+	<h3>Baseline test number successfully added!!! Refresh page to see the results!!!</h3>
 </div>

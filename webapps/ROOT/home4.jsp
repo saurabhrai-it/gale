@@ -45,7 +45,7 @@
 
 		
 		//AJAX
-			function getComparisonTable(baselineLoadTestNumber,currLoadTestNumber,currLoadTestDuration,isBaselineFilePresent) {
+			function saveBaselineNumber(baselineLoadTestNumber) {
 				document.getElementById("submitBaselineNumber").style.display = "none";
 				var xhttp;
 				if (baselineLoadTestNumber.length == 0) { 
@@ -58,28 +58,9 @@
 						document.getElementById("comparisonContent").innerHTML = this.responseText;
 					}
 				};
-			xhttp.open("POST","baselineAdded.jsp?baselineLoadTestNumber="+baselineLoadTestNumber+"&currLoadTestNumber="+currLoadTestNumber+"&currLoadTestDuration="+currLoadTestDuration+"&isBaselineFilePresent="+isBaselineFilePresent,true);
+			xhttp.open("POST","baselineAdded.jsp?baselineLoadTestNumber="+baselineLoadTestNumber,true);
 			xhttp.send();
 			}	
-
-
-
-			function getComparisonTable(currLoadTestNumber,currLoadTestDuration,isBaselineFilePresent) {
-				document.getElementById("submitBaselineNumber").style.display = "none";
-				var xhttp;
-				if (baselineLoadTestNumber.length == 0) { 
-					document.getElementById("comparisonContent").innerHTML = "";
-					return;
-				}
-				xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						document.getElementById("comparisonContent").innerHTML = this.responseText;
-					}
-				};
-			xhttp.open("POST","baselineAdded.jsp?currLoadTestNumber="+currLoadTestNumber+"&currLoadTestDuration="+currLoadTestDuration+"&isBaselineFilePresent="+isBaselineFilePresent,true);
-			xhttp.send();
-			}				
     </script>
     <style>
     .btn{
@@ -111,7 +92,9 @@
 <%
      //String binDir                       = System.getProperty("user.dir").toString();
      String currDir                        = "..\\webapps\\ROOT\\Reports";
+	 session.setAttribute("currDir", currDir);
      String name                           = request.getParameter("currLoadTestNumber");
+	 session.setAttribute("name", name);
      String fullFolderLocationAggregate    = "";
      String fullFolderLocationResponseTime = "";
      String desiredFolder                  = "";
@@ -172,6 +155,7 @@
 <%
           if(!errorMsg.contains("Unable to fetch data"))
                {
+				  session.setAttribute("testValue", testValue);
                   desiredFolder                      = name + "_" + testValue;
                   fullFolderLocationAggregate        = currDir +"\\"+desiredFolder+"\\AggregateReport";
                   fullFolderLocationResponseTime     = currDir +"\\"+desiredFolder+"\\ResponseTime";
@@ -572,10 +556,7 @@
 				<div class="jumbotron col-md-6 col-md-offset-3 text-center"  id="submitBaselineNumber">
 					<h3>Please Enter Baseline Test Number : </h3>
 					<input type="text" name="baselineLoadTestNumber" id="baselineLoadTestNumberId">
-					<input type="hidden" name="currLoadTestNumber" id="currLoadTestNumberId" value="<%=name%>">
-					<input type="hidden" name="currLoadTestDuration" id="currLoadTestDurationId" value="<%=testValue%>">
-					<input type="hidden" name="isBaselineFilePresent" id="isBaselineFilePresentId" value="false">
-				    <input type="Button" value = "Submit" onClick="getComparisonTable(baselineLoadTestNumberId.value,currLoadTestNumberId.value,currLoadTestDurationId.value,isBaselineFilePresentId.value)"/>
+				    <input type="Button" value = "Submit" onClick="saveBaselineNumber(baselineLoadTestNumberId.value)"/>
 				</div>
 		<%
 			}
@@ -584,21 +565,55 @@
 				FileReader fileReaderBaselineTest = new FileReader(currDir +"\\"+desiredFolder+"\\BaselineTestNum.txt");
 				BufferedReader bufferedfileReaderBaselineTest = new BufferedReader(fileReaderBaselineTest);
 				String baselineLoadTestNumber = bufferedfileReaderBaselineTest.readLine();
+				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 		%>
-					<div>
-						<h1>
-							Baseline Test Number : <%=baselineLoadTestNumber%><br/>
-							Current Test Number :<%=name%>
-						</h1>
-					</div>
+					  <div class="col-md-4"  onLoad="getCompTable()">
+						<h3>Baseline Test Number : <%=baselineLoadTestNumber%></h3>
+						<input type="button" value="Get Comparison Table" onClick="getCompTable()">
+					  </div>
 		<%	
 				bufferedfileReaderBaselineTest.close();
 				fileReaderBaselineTest.close();
-		    }
+		%>
+				<div  class="col-md-4 col-md-offset-4" id="testToCompare">
+					   <h4>Choose test number to compare with : </h4>
+					   <select>
+					   <option value="noSelection">Select Any</option>
+		<%
+		        String[] tempTestNumList;
+				String tempTestNum="";
+				for(int j=0; j < mainFolders.length;j++)
+				{
+					fileName = mainFolders[j].getName().toString();
+					if(fileName.endsWith(testValue))
+					{
+						tempTestNumList = fileName.split("_");
+						tempTestNum = tempTestNumList[0];
+		%>
+				    <option value="<%=tempTestNum%>"><%=tempTestNum%></option>
+		<%			}
+				}
+		%>
+					   </select>
+		        </div>
+				<div class="col-md-offset-1 col-md-10 col-md-offset-1" id="comparisonTable"></div>
+				<script>
+				    
+			function getCompTable() {
+				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("comparisonTable").innerHTML = this.responseText;
+					}
+				};
+			xhttp.open("POST","GetComparisonTable.jsp",true);
+			xhttp.send();
+			}
+				</script>
+		<%
+			}
 	   %>
-	   <div id="comparisonContent">
-	   </div>
-	   
+	   <div id="comparisonContent"></div>
       </div>
       <%}%>
    </div>
