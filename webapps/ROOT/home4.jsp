@@ -567,9 +567,9 @@
 				String baselineLoadTestNumber = bufferedfileReaderBaselineTest.readLine();
 				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 		%>
-					  <div class="col-md-4"  onLoad="getCompTable()">
+					  <div class="col-md-4">
 						<h3>Baseline Test Number : <%=baselineLoadTestNumber%></h3>
-						<input type="button" value="Get Comparison Table" onClick="getCompTable()">
+						<input type="button" value="Get Comparison Table" onClick="getCompTable(<%=baselineLoadTestNumber%>)">
 					  </div>
 		<%	
 				bufferedfileReaderBaselineTest.close();
@@ -577,8 +577,8 @@
 		%>
 				<div  class="col-md-4 col-md-offset-4" id="testToCompare">
 					   <h4>Choose test number to compare with : </h4>
-					   <select>
-					   <option value="noSelection">Select Any</option>
+					   <select  onchange="getCompTable(this.value)">
+					   <option value="noSelection" >Select Any</option>
 		<%
 		        String[] tempTestNumList;
 				String tempTestNum="";
@@ -599,14 +599,14 @@
 				<div class="col-md-offset-1 col-md-10 col-md-offset-1" id="comparisonTable"></div>
 				<script>
 				    
-			function getCompTable() {
+			function getCompTable(baseTest) {
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						document.getElementById("comparisonTable").innerHTML = this.responseText;
 					}
 				};
-			xhttp.open("POST","GetComparisonTable.jsp",true);
+			xhttp.open("POST","GetComparisonTable.jsp?baselineTest="+baseTest,true);
 			xhttp.send();
 			}
 				</script>
