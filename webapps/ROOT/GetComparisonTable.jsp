@@ -15,9 +15,11 @@
     Arrays.sort(listOfBaselineFoldersAggregate);
 	Set<File> hs1 = new TreeSet<>(Arrays.asList(listOfCurrentFoldersAggregate));
 	Set<File> hs2 = new TreeSet<>(Arrays.asList(listOfBaselineFoldersAggregate));
-	Set<File> allProductFile = new TreeSet<>();
-    allProductFile.addAll(hs1);
-    allProductFile.addAll(hs2);
+	Set<String> allProductFile = new TreeSet<>();
+	for(File temphs1: hs1)
+       allProductFile.add(temphs1.getName());
+	for(File temphs2: hs2)
+       allProductFile.add(temphs2.getName());
 %>
 <div class="text-center">
         <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Comparison Table</h4>
@@ -46,13 +48,18 @@
 			<%
 						String prodCurrentNameWithExtension = "";String prodCurrentName = "";String pathProductCurrentAggregate = "";
 						String prodBaselineNameWithExtension = "";String prodBaselineName = "";String pathProductBaselineAggregate = "";
-						for(File tempFile : allProductFile)
-						{
-								 
-							     prodBaselineNameWithExtension  = tempFile.getName();
+                        String lineOverallBaseline="";String overallSampleBaseline="-";String overallResponseTimeBaseline="-";String overallErrorBaseline="-";
+						String lineOverallCurrent="";String overallSampleCurrent="-";String overallResponseTimeCurrent="-";String overallErrorCurrent="-";
+						for(String tempFile : allProductFile)
+						{	
+							if(h.contains(tempFile)&&hs1.contains(tempFile))
+							{
+								%>
+								temp File ++++ <%=tempFile%>   
+								<%
+							     prodBaselineNameWithExtension  = tempFile;
                                  prodBaselineName               = prodBaselineNameWithExtension.replace(".csv","");
                                  pathProductBaselineAggregate   = currDir+"\\"+desiredBaselineFolder+"\\AggregateReport\\"+prodBaselineNameWithExtension;
-                                 String lineOverallBaseline="";String overallSampleBaseline="";String overallResponseTimeBaseline="";String overallErrorBaseline="";
                                  String[] dataInLineOverallBaseline;
                                  FileReader fileReaderOverallBaseline         = new FileReader(pathProductBaselineAggregate);
                                  BufferedReader bufferedReaderOverallBaseline = new BufferedReader(fileReaderOverallBaseline);
@@ -67,6 +74,9 @@
                                      else
                                        continue;
 						        }
+								bufferedReaderOverallBaseline.close();
+								fileReaderOverallBaseline.close();
+							}
 			%>
 					<tr>
 						<td><%=prodBaselineName%></td>
