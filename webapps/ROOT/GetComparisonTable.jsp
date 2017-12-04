@@ -22,8 +22,8 @@
        allProductFile.add(temphs2.getName());
 %>
 <div class="text-center">
-        <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Comparison Table</h4>
         <div class="col-md-10">
+        <h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;margin-bottom:0px;">Comparison Table</h4>
 		  <div class="col-md-5 col-md-offset-1" style="padding-right:0px;">
 		     <h3 class="text-center text-danger">Load Test : <%=baselineLoadTestNumber%></h3>
 		  </div>

@@ -577,7 +577,7 @@
 				fileReaderBaselineTest.close();
 		%>
 				<div  class="col-md-12" id="testToCompare">
-					   <h4>Choose test number to compare with : </h4>
+					   <h5>Or choose test to compare with :</h5>
 					   <select  onchange="getCompTable(this.value)">
 					   <option value="noSelection" >Select Any</option>
 		<%
