@@ -567,15 +567,16 @@
 				String baselineLoadTestNumber = bufferedfileReaderBaselineTest.readLine();
 				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 		%>
-					  <div class="col-md-4">
-						<h3>Baseline Test Number : <%=baselineLoadTestNumber%></h3>
-						<input type="button" value="Get Comparison Table" onClick="getCompTable(<%=baselineLoadTestNumber%>)">
-					  </div>
+					  <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
+					    <div class="col-md-12">
+						 <h5>Baseline Test Number : <%=baselineLoadTestNumber%></h5>
+						 <input type="button" value="Get Comparison Table" onClick="getCompTable(<%=baselineLoadTestNumber%>)">
+						</div>
 		<%	
 				bufferedfileReaderBaselineTest.close();
 				fileReaderBaselineTest.close();
 		%>
-				<div  class="col-md-4 col-md-offset-4" id="testToCompare">
+				<div  class="col-md-12" id="testToCompare">
 					   <h4>Choose test number to compare with : </h4>
 					   <select  onchange="getCompTable(this.value)">
 					   <option value="noSelection" >Select Any</option>
@@ -595,8 +596,9 @@
 				}
 		%>
 					   </select>
-		        </div>
-				<div class="col-md-offset-1 col-md-10 col-md-offset-1" id="comparisonTable"></div>
+					</div>
+				</div>
+				<div class="col-md-offset-2 col-md-10" id="comparisonTable"></div>
 				<script>
 				    
 			function getCompTable(baseTest) {
