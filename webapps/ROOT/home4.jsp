@@ -122,16 +122,16 @@
       <nav class="navbar navbar-default">
         <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
-            <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-80px;"/></a>
-            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
-            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-90px;"/></a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
             <a class="navbar-brand" style="cursor:default;" href="#">DURATION : <%=testTime%></a>
           </div>
           <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#AggregateReports" data-toggle="tab">Aggregate Reports</a></li>
-              <li><a href="#ResponseTime" data-toggle="tab">Response Time Graphs</a></li>
-              <li><a href="#ComparisonTab" data-toggle="tab">Comparison</a></li>
+              <li class="active"><a href="#AggregateReports" data-toggle="tab"><strong>Aggregate Reports</strong></a></li>
+              <li><a href="#ResponseTime" data-toggle="tab"><strong>Response Time Graphs</strong></a></li>
+              <li><a href="#ComparisonTab" data-toggle="tab"><strong>Comparison</strong></a></li>
             </ul>
           </div>
         </div>
@@ -567,10 +567,10 @@
 				String baselineLoadTestNumber = bufferedfileReaderBaselineTest.readLine();
 				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 		%>
-					  <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
+				 <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
 					    <div class="col-md-12">
 						 <h5>Baseline Test Number : <%=baselineLoadTestNumber%></h5>
-						 <input type="button" value="Get Comparison Table" onClick="getCompTable(<%=baselineLoadTestNumber%>)">
+						 <input type="button" value="Baseline Comparison" onClick="getCompTable(<%=baselineLoadTestNumber%>)">
 						</div>
 		<%	
 				bufferedfileReaderBaselineTest.close();
@@ -611,6 +611,7 @@
 			xhttp.open("POST","GetComparisonTable.jsp?baselineTest="+baseTest,true);
 			xhttp.send();
 			}
+			window.onload=getCompTable(<%=baselineLoadTestNumber%>);
 				</script>
 		<%
 			}
