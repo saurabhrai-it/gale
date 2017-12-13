@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../QAminiLogo.ico">
 
-    <title>Gale Reports</title>
+    <title>PROJECT TITLE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -125,7 +125,7 @@
         <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
             <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-90px;"/></a>
-            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;PROJECT NAME</a>
             <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
             <a class="navbar-brand" style="cursor:default;" href="#">DURATION : <%=testTime%></a>
           </div>
@@ -570,11 +570,11 @@
 				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 				
 		%>
-			<div class="col-md-offset-2 col-md-8">	
-				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Comparison Table</h4>
-				<div class="col-md-3 col-md-offset-2 form-group">
-					<label class="text-center text-danger">Baseline Load Test : </label>
-					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
+			<div class="col-md-offset-1 col-md-10">	
+				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;margin-bottom:0px;">Comparison Table</h4>
+				<div class="col-md-4 col-md-offset-1" style="padding-right:0px;">
+					<h3 class="text-center text-danger">Load Test : </h3>
+					<select onchange="getCompTable(this.value,<%=name%>)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
 					   <option value="<%=baselineLoadTestNumber%>" ><%=baselineLoadTestNumber%></option>
 		<%
 		        String[] tempTestNumList;
@@ -596,12 +596,12 @@
 		%>
 					</select>
 				</div>
-				<div class="col-md-2">
-					<label class="text-center text-danger">VS</label>
+				<div class="col-md-1" style="padding-right:0px;">
+					<h3 class="text-center text-danger">VS</h3>
 				</div>
-				<div class="col-md-3 form-group">
-					<label class="text-center text-danger">Current Load Test : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber">
+				<div class="col-md-4"  style="padding-right:0px;">
+					<h3 class="text-center text-danger">Load Test : </h3>
+					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value)">
 					   <option value="<%=name%>" ><%=name%></option>
 		<%
 		        String[] tempTestNumList1;
