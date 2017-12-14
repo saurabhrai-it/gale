@@ -24,15 +24,15 @@
    File[] mainFolders                    = mainFolder.listFiles();
 %>
 <div class="text-center">
-        <div class="col-md-10">
+        <div class="col-sm-12">
 			<table class="table table-bordered table-hover" style="font-size:14px;">
             <thead>
                          <tr class="text-center text-primary">
                            <th>Products</th>
-                           <th>Average Response Time(Seconds)</th>
+                           <th>Average Response Time (Seconds)</th>
                            <th>Samples</th>
 						   <th>Error%</th>
-                           <th>Average Response Time(Seconds)</th>
+                           <th>Average Response Time (Seconds)</th>
                            <th>Samples</th>
 						   <th>Error%</th>
 						   <th>Delta(Test <%=currLoadTestNumber%>-<%=baselineLoadTestNumber%>)</th>

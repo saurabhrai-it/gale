@@ -91,6 +91,11 @@
     }
     </style>
 </head>
+
+<%@ page import="java.util.*" %>
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.regex.Matcher" %>
+<%@ page import="java.util.regex.Pattern" %>
 <%
      //String binDir                       = System.getProperty("user.dir").toString();
      String currDir                        = "..\\webapps\\ROOT\\Reports";
@@ -104,18 +109,24 @@
      File[] mainFolders                    = mainFolder.listFiles();
      String testTime = "";String testValue = "";
      String errorMsg = "";String fileName  = "";
+	 String pattern = "";
      for(int j=0; j < mainFolders.length;j++)
           {
              fileName = mainFolders[j].getName().toString();
              if(fileName.startsWith(name.toString()))
              {
-                if(fileName.endsWith("28800"))
-                    {testTime = "8 Hours";testValue = "28800";}
-                else if(fileName.endsWith("7200"))
-                    {testTime = "2 Hours";testValue = "7200";}
-                else
-                    errorMsg = "<strong color='red'>Unable to fetch data! Please check the folder with load test number exists!</strong>";
-                break;
+				pattern = name+"_(.+)";
+				Pattern patternComplier = Pattern.compile(pattern);
+				Matcher patternMatcher = patternComplier.matcher(fileName);
+				if(patternMatcher.find())
+				{
+					testValue = patternMatcher.group(1);
+					Float testDurationInHour = Float.parseFloat(testValue)/3600;
+					Float testDurationLeftInSec = Float.parseFloat(testValue)%3600;
+					Float testDurationInMinute = testDurationLeftInSec/60;
+					testTime = String.format("%.00f",testDurationInHour) + " Hr, " + String.format("%.00f",testDurationInMinute) + "Min";
+					break;
+				}
              }
           }
 %>
@@ -125,9 +136,9 @@
         <div class="container" style="padding-left:0px;">
           <div class="navbar-header">
             <a href="#" id="goTop" style="cursor:default;"><img src="../../qaLogo.jpg" height="50px" style="float:left;margin-left:-90px;"/></a>
-            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
-            <a class="navbar-brand" style="cursor:default;" href="#">&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
-            <a class="navbar-brand" style="cursor:default;" href="#">DURATION : <%=testTime%></a>
+            <a class="navbar-brand" style="cursor:default;font-size: 14px;" href="#">&nbsp;&nbsp;&nbsp;GALE REPORTS</a>
+            <a class="navbar-brand" style="cursor:default;font-size: 14px;" href="#">&nbsp;&nbsp;&nbsp;LOAD TEST NUMBER : <%=name%></a>
+            <a class="navbar-brand" style="cursor:default;font-size: 14px;" href="#">DURATION : <%=testTime%></a>
           </div>
           <div id="navbar">
             <ul class="nav navbar-nav navbar-right">
@@ -152,8 +163,6 @@
       <div class="row" style="margin-right:0;">
       <div class="col-md-2" style="position:fixed;background-color:#f8f8f8;">
         <h4 class="text-center" style="color:#111;">PRODUCT NAME</h4>
-<%@ page import="java.util.*" %>
-<%@ page import="java.io.*" %>
 <%
           if(!errorMsg.contains("Unable to fetch data"))
                {
@@ -556,9 +565,28 @@
 			{
 		%>
 				<div class="jumbotron col-md-6 col-md-offset-3 text-center"  id="submitBaselineNumber">
-					<h3>Please Enter Baseline Test Number : </h3>
-					<input type="text" name="baselineLoadTestNumber" id="baselineLoadTestNumberId">
-				    <input type="Button" value = "Submit" onClick="saveBaselineNumber(baselineLoadTestNumberId.value)"/>
+					<label>Please Enter Baseline Test Number : </label>
+					<select id="newCurrLoadTestNumber" >
+		<%
+		        String[] tempTestNumList1;
+				String tempTestNum1="";
+				for(int j=0; j < mainFolders.length;j++)
+				{
+					fileName = mainFolders[j].getName().toString();
+					if(fileName.endsWith(testValue))
+					{
+						tempTestNumList1 = fileName.split("_");
+						tempTestNum1 = tempTestNumList1[0];
+						if(!tempTestNum1.equals(name))
+						{
+		%>
+				    <option value="<%=tempTestNum1%>"><%=tempTestNum1%></option>
+		<%			    }
+					}
+				}
+		%>
+					</select>
+				    <input type="Button" value = "Submit" onClick="saveBaselineNumber(newCurrLoadTestNumber.value)" />
 				</div>
 		<%
 			}
@@ -570,10 +598,10 @@
 				session.setAttribute("baselineLoadTestNumber", baselineLoadTestNumber);
 				
 		%>
-			<div class="col-md-offset-2 col-md-8">	
-				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;">Comparison Table</h4>
-				<div class="col-md-3 col-md-offset-2 form-group">
-					<label class="text-center text-danger">Baseline Load Test : </label>
+			<div class="col-sm-offset-1 col-sm-10">	
+				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;font-size: 20px;font-weight: 700;">Comparison Table</h4>
+				<div class="col-sm-6 form-group text-center" style="font-size: 18px;">
+					<label class="text-danger">Baseline Load Test : </label>
 					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
 					   <option value="<%=baselineLoadTestNumber%>" ><%=baselineLoadTestNumber%></option>
 		<%
@@ -596,12 +624,9 @@
 		%>
 					</select>
 				</div>
-				<div class="col-md-2">
-					<label class="text-center text-danger">VS</label>
-				</div>
-				<div class="col-md-3 form-group">
+				<div class="col-sm-6 form-group text-center"  style="font-size: 18px;">
 					<label class="text-center text-danger">Current Load Test : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber">
+					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber" > 
 					   <option value="<%=name%>" ><%=name%></option>
 		<%
 		        String[] tempTestNumList1;
@@ -624,8 +649,7 @@
 					</select>
 				</div>
 			</div>			
-						
-				<div class="col-md-offset-2 col-md-10" id="comparisonTable"></div>
+				<div class="col-sm-offset-1 col-sm-10" id="comparisonTable"></div>
 				<script>
 				    
 			function getCompTable(baseTest,currTest) {
