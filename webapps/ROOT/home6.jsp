@@ -600,9 +600,9 @@
 		%>
 			<div class="col-sm-offset-1 col-sm-10">	
 				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;font-size: 20px;font-weight: 700;">Comparison Table</h4>
-				<div class="col-sm-6 form-group text-center" style="font-size: 18px;">
+				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
 					<label class="text-danger">Baseline Load Test : </label>
-					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
+					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value,document.getElementById('productType').value)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
 					   <option value="<%=baselineLoadTestNumber%>" ><%=baselineLoadTestNumber%></option>
 		<%
 		        String[] tempTestNumList;
@@ -624,9 +624,38 @@
 		%>
 					</select>
 				</div>
-				<div class="col-sm-6 form-group text-center"  style="font-size: 18px;">
+				
+				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
+					<label class="text-danger">Type : </label>
+					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,document.getElementById('newCurrLoadTestNumber').value,this.value)" id="productType" name="productType">
+					   <option value="Overall" >Overall</option>
+		<%
+		        String[] tempTestNumList2;
+				String tempTestNum2="";
+				File[] listOfCurrentFoldersAggregate      = listOfFoldersAggregate;
+				Arrays.sort(listOfCurrentFoldersAggregate);
+				File[] listOfBaselineFoldersAggregate      = new File(currDir+"\\"+baselineLoadTestNumber+"_"+testValue+"\\AggregateReport").listFiles();
+				Arrays.sort(listOfBaselineFoldersAggregate);
+				Set<File> hs1 = new TreeSet<>(Arrays.asList(listOfCurrentFoldersAggregate));
+				Set<File> hs2 = new TreeSet<>(Arrays.asList(listOfBaselineFoldersAggregate));
+				Set<String> allProductFile = new TreeSet<>();
+				for(File temphs1: hs1)
+					allProductFile.add(temphs1.getName().replace(".csv",""));
+				for(File temphs2: hs2)
+					allProductFile.add(temphs2.getName().replace(".csv",""));
+				for(String tempFile : allProductFile)
+						{
+		%>
+				    <option value="<%=tempFile%>"><%=tempFile%></option>
+		<%			 
+						}
+		%>
+					</select>
+				</div>
+				
+				<div class="col-sm-4 form-group text-center"  style="font-size: 18px;">
 					<label class="text-center text-danger">Current Load Test : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber" > 
+					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value,document.getElementById('productType').value)" id="newCurrLoadTestNumber" > 
 					   <option value="<%=name%>" ><%=name%></option>
 		<%
 		        String[] tempTestNumList1;
@@ -652,17 +681,17 @@
 				<div class="col-sm-offset-1 col-sm-10" id="comparisonTable"></div>
 				<script>
 				    
-			function getCompTable(baseTest,currTest) {
+			function getCompTable(baseTest,currTest,prodType) {
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						document.getElementById("comparisonTable").innerHTML = this.responseText;
 					}
 				};
-			xhttp.open("POST","GetComparisonTable2.jsp?baselineTest="+baseTest+"&name="+currTest,true);
+			xhttp.open("POST","GetComparisonTable2.jsp?baselineTest="+baseTest+"&name="+currTest+"&prodType="+prodType,true);
 			xhttp.send();
 			}
-			window.onload=getCompTable(<%=baselineLoadTestNumber%>,<%=name%>);
+			window.onload=getCompTable(<%=baselineLoadTestNumber%>,<%=name%>,"Overall");
 				</script>
 		<%
 			}
