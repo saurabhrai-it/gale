@@ -645,9 +645,11 @@
 					allProductFile.add(temphs2.getName().replace(".csv",""));
 				for(String tempFile : allProductFile)
 						{
+							if(hs1.toString().contains(tempFile)&&hs2.toString().contains(tempFile))
+							{
 		%>
 				    <option value="<%=tempFile%>"><%=tempFile%></option>
-		<%			 
+		<%			        }
 						}
 		%>
 					</select>

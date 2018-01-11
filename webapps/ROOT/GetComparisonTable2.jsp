@@ -18,10 +18,11 @@
 	File[] listOfBaselineFoldersAggregate      = new File(currDir+"\\"+desiredBaselineFolder+"\\AggregateReport").listFiles();
     Arrays.sort(listOfBaselineFoldersAggregate);
 	
-   if(productType.equals("Overall"))
-   {
 	Set<File> hs1 = new TreeSet<>(Arrays.asList(listOfCurrentFoldersAggregate));
 	Set<File> hs2 = new TreeSet<>(Arrays.asList(listOfBaselineFoldersAggregate));
+	
+   if(productType.equals("Overall"))
+   {
 	Set<String> allProductFile = new TreeSet<>();
 	for(File temphs1: hs1)
        allProductFile.add(temphs1.getName());
@@ -184,7 +185,7 @@
 		</div>		 
 </div>
  <%		}
- else if(listOfCurrentFoldersAggregate.toString().contains(productType)&&listOfBaselineFoldersAggregate.toString().contains(productType)){
+ else{
 	 %>
 	 
 	 <div class="text-center">
@@ -266,6 +267,57 @@
 							{
 								deltaResponse = String.format("%.03f", Float.parseFloat(responseTimeCurrent)-Float.parseFloat(responseTimeBaseline));
 							}
+					%>
+					<tr>
+						<td class="text-left"><%=tempFile%></td>
+						<td class="text-center"><%=responseTimeBaseline%></td>
+						<td><%=sampleBaseline%></td>
+						<td><%=errorBaseline%></td>
+						<td class="text-center"><%=responseTimeCurrent%></td>
+						<td><%=sampleCurrent%></td>
+						<td><%=errorCurrent%></td>
+						<td><%=deltaResponse%></td>
+					</tr>
+			       <%
+				}
+				if(baseTransactionName.keySet().toString().contains(tempFile)&&!currTransactionName.keySet().toString().contains(tempFile))
+				{
+					String baseTransactionData = baseTransactionName.get(tempFile);
+					baseTransactionDataArray = baseTransactionData.split("\\*");
+					responseTimeBaseline = baseTransactionDataArray[1];
+					sampleBaseline = baseTransactionDataArray[0];
+					errorBaseline = baseTransactionDataArray[2];
+					responseTimeCurrent = "-";
+					sampleCurrent = "-";
+					errorCurrent = "-";
+					if(!responseTimeBaseline.equals("-")&&!responseTimeCurrent.equals("-"))
+							{
+								deltaResponse = String.format("%.03f", Float.parseFloat(responseTimeCurrent)-Float.parseFloat(responseTimeBaseline));
+							}
+					%>
+					<tr>
+						<td class="text-left"><%=tempFile%></td>
+						<td class="text-center"><%=responseTimeBaseline%></td>
+						<td><%=sampleBaseline%></td>
+						<td><%=errorBaseline%></td>
+						<td class="text-center"><%=responseTimeCurrent%></td>
+						<td><%=sampleCurrent%></td>
+						<td><%=errorCurrent%></td>
+						<td><%=deltaResponse%></td>
+					</tr>
+			       <%
+				}
+				if(!baseTransactionName.keySet().toString().contains(tempFile)&&currTransactionName.keySet().toString().contains(tempFile))
+				{
+					String currTransactionData = currTransactionName.get(tempFile);
+					currTransactionDataArray = currTransactionData.split("\\*");
+					responseTimeBaseline = "-";
+					sampleBaseline = "-";
+					errorBaseline = "-";
+					responseTimeCurrent = currTransactionDataArray[1];
+					sampleCurrent = currTransactionDataArray[0];
+					errorCurrent = currTransactionDataArray[2];
+					deltaResponse="-";
 					%>
 					<tr>
 						<td class="text-left"><%=tempFile%></td>
