@@ -12,13 +12,14 @@
 	
 	String desiredCurrentFolder = currLoadTestNumber+"_"+currLoadTestDuration;
 	String desiredBaselineFolder = baselineLoadTestNumber+"_"+currLoadTestDuration;
-   if(productType.equals("Overall"))
-   {
 	   
 	File[] listOfCurrentFoldersAggregate      = new File(currDir+"\\"+desiredCurrentFolder+"\\AggregateReport").listFiles();
     Arrays.sort(listOfCurrentFoldersAggregate);
 	File[] listOfBaselineFoldersAggregate      = new File(currDir+"\\"+desiredBaselineFolder+"\\AggregateReport").listFiles();
     Arrays.sort(listOfBaselineFoldersAggregate);
+	
+   if(productType.equals("Overall"))
+   {
 	Set<File> hs1 = new TreeSet<>(Arrays.asList(listOfCurrentFoldersAggregate));
 	Set<File> hs2 = new TreeSet<>(Arrays.asList(listOfBaselineFoldersAggregate));
 	Set<String> allProductFile = new TreeSet<>();
@@ -183,7 +184,7 @@
 		</div>		 
 </div>
  <%		}
- else{
+ else if(listOfCurrentFoldersAggregate.toString().contains(productType)&&listOfBaselineFoldersAggregate.toString().contains(productType)){
 	 %>
 	 
 	 <div class="text-center">
@@ -209,26 +210,82 @@
 			FileReader fileReaderOverallCurrent         = new FileReader(currDir+"\\"+desiredBaselineFolder+"\\AggregateReport\\"+productType+".csv");
             BufferedReader bufferedReaderOverallCurrent  = new BufferedReader(fileReaderOverallCurrent);
 			Set<String> allTransactionName = new TreeSet<>();
-			String[] dataInLine;String sample;String lineOverallBaseline="";String lineOverallCurrent="";
+			HashMap<String,String> baseTransactionName = new HashMap<String,String>();
+			HashMap<String,String> currTransactionName = new HashMap<String,String>();
+			String[] dataInLine;String label;String resTime;String sample;String err;
+			String lineOverallBaseline="";String lineOverallCurrent="";
             while((lineOverallBaseline = bufferedReaderOverallBaseline.readLine()) != null){
-                if(!(lineOverallBaseline.startsWith("TOTAL")&&lineOverallBaseline.startsWith("sampler_label")))
+                if(!lineOverallBaseline.startsWith("TOTAL")&&!lineOverallBaseline.startsWith("sampler_label"))
                 {
 					dataInLine       = lineOverallBaseline.split(",");
+                    label            = dataInLine[0];
+                    resTime            = String.format("%.03f", Float.parseFloat(dataInLine[2])/1000);
                     sample            = dataInLine[1];
-					allTransactionName.add(sample);
+                    err            = String.format("%.02f", Float.parseFloat(dataInLine[7])*100)+"%";
+					baseTransactionName.put(label,sample+"*"+resTime+"*"+err);
+					allTransactionName.add(label);
 				}
 			}
             while((lineOverallCurrent = bufferedReaderOverallCurrent.readLine()) != null){
-                if(!(lineOverallCurrent.startsWith("TOTAL")&&lineOverallCurrent.startsWith("sampler_label")))
+                if(!lineOverallCurrent.startsWith("TOTAL")&&!lineOverallCurrent.startsWith("sampler_label"))
                 {
 					dataInLine        = lineOverallCurrent.split(",");
+                    label            = dataInLine[0];
+                    resTime            = String.format("%.03f", Float.parseFloat(dataInLine[2])/1000);
                     sample            = dataInLine[1];
-					allTransactionName.add(sample);
+                    err            = String.format("%.02f", Float.parseFloat(dataInLine[7])*100)+"%";
+					currTransactionName.put(label,sample+"*"+resTime+"*"+err);
+					allTransactionName.add(label);
 				}
 			}
+			bufferedReaderOverallBaseline.close();
+			fileReaderOverallBaseline.close();
+			bufferedReaderOverallCurrent.close();
+			fileReaderOverallCurrent.close();
 			String overallSampleBaseline="-";String overallResponseTimeBaseline="-";String overallErrorBaseline="-";
 			String overallSampleCurrent="-";String overallResponseTimeCurrent="-";String overallErrorCurrent="-";
-	 
+			
+			for(String tempFile : allTransactionName)
+			{
+				String responseTimeBaseline="-";String sampleBaseline="-";String errorBaseline="-";
+				String responseTimeCurrent="-";String sampleCurrent="-";String errorCurrent="-";
+				String deltaResponse="-";String[] currTransactionDataArray;String[] baseTransactionDataArray;
+				if(baseTransactionName.keySet().toString().contains(tempFile)&&currTransactionName.keySet().toString().contains(tempFile))
+				{
+					String currTransactionData = currTransactionName.get(tempFile);
+					String baseTransactionData = baseTransactionName.get(tempFile);
+					currTransactionDataArray = currTransactionData.split("\\*");
+					baseTransactionDataArray = baseTransactionData.split("\\*");
+					responseTimeBaseline = baseTransactionDataArray[1];
+					sampleBaseline = baseTransactionDataArray[0];
+					errorBaseline = baseTransactionDataArray[2];
+					responseTimeCurrent = currTransactionDataArray[1];
+					sampleCurrent = currTransactionDataArray[0];
+					errorCurrent = currTransactionDataArray[2];
+					if(!responseTimeBaseline.equals("-")&&!responseTimeCurrent.equals("-"))
+							{
+								deltaResponse = String.format("%.03f", Float.parseFloat(responseTimeCurrent)-Float.parseFloat(responseTimeBaseline));
+							}
+					%>
+					<tr>
+						<td class="text-left"><%=tempFile%></td>
+						<td class="text-center"><%=responseTimeBaseline%></td>
+						<td><%=sampleBaseline%></td>
+						<td><%=errorBaseline%></td>
+						<td class="text-center"><%=responseTimeCurrent%></td>
+						<td><%=sampleCurrent%></td>
+						<td><%=errorCurrent%></td>
+						<td><%=deltaResponse%></td>
+					</tr>
+			       <%
+				}
+			}
+			%>
+			</tbody>
+			</table>
+		</div>
+	</div>
+			<%
     }
 }
  %>
