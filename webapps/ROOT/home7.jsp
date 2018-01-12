@@ -602,7 +602,7 @@
 				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;font-size: 20px;font-weight: 700;">Comparison Table</h4>
 				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
 					<label class="text-danger">Baseline Load Test : </label>
-					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value,document.getElementById('productType').value)" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
+					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value,document.getElementById('productType').value);getProdType(this.value,document.getElementById('newCurrLoadTestNumber').value) " id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
 					   <option value="<%=baselineLoadTestNumber%>" ><%=baselineLoadTestNumber%></option>
 		<%
 		        String[] tempTestNumList;
@@ -663,12 +663,14 @@
 						}
 		%>
 					</select>
+					<h1>new Test curr Number : <%=currLoadTestNew%></h1>
+					<h1>new Test base Number : <%=baseLoadTestNew%></h1>
 				</div>
 				
 				<div class="col-sm-4 form-group text-center"  style="font-size: 18px;">
 					<label class="text-center text-danger">Current Load Test : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value,document.getElementById('productType').value)" id="newCurrLoadTestNumber" > 
-					   <option value="<%=name%>" ><%=name%></option>
+					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value,document.getElementById('productType').value);getProdType(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber" > 
+					   <option value="<%=name%>"><%=name%></option>
 		<%
 		        String[] tempTestNumList1;
 				String tempTestNum1="";
@@ -699,8 +701,13 @@
 						document.getElementById("comparisonTable").innerHTML = this.responseText;
 					}
 				};
-			xhttp.open("POST","GetComparisonTable2.jsp?baselineTest="+baseTest+"&name="+currTest+"&prodType="+prodType,true);
+			xhttp.open("POST","GetComparisonTable3.jsp?baselineTest="+baseTest+"&name="+currTest+"&prodType="+prodType,true);
 			xhttp.send();
+			}
+			function getProdType(baseTest,currTest) {
+				xhttp = new XMLHttpRequest();
+				xhttp.open("POST","GetProdType.jsp?baselineTest="+baseTest+"&name="+currTest,true);
+				xhttp.send();
 			}
 			window.onload=getCompTable(<%=baselineLoadTestNumber%>,<%=name%>,"Overall");
 				</script>

@@ -626,7 +626,7 @@
 				</div>
 				
 				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
-					<label class="text-danger">Type : </label>
+					<label class="text-danger">Product : </label>
 					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,document.getElementById('newCurrLoadTestNumber').value,this.value)" id="productType" name="productType">
 					   <option value="Overall" >Overall</option>
 		<%
