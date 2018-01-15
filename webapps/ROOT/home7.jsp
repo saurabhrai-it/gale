@@ -600,9 +600,9 @@
 		%>
 			<div class="col-sm-offset-1 col-sm-10">	
 				<h4 class="text-center" style="background-color:#C2B280;color:white;padding-top:10px;padding-bottom:10px;border-radius:10px;font-size: 20px;font-weight: 700;">Comparison Table</h4>
-				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
+				<div class="col-sm-6 form-group text-center" style="font-size: 18px;">
 					<label class="text-danger">Baseline Load Test : </label>
-					<select onchange="getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value,document.getElementById('productType').value);getProdType(this.value,document.getElementById('newCurrLoadTestNumber').value) " id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
+					<select onchange="getProdType(this.value,document.getElementById('newCurrLoadTestNumber').value);getCompTable(this.value,document.getElementById('newCurrLoadTestNumber').value,'Overall');" id="newBaselineLoadTestNumber" name="newBaselineLoadTestNumber">
 					   <option value="<%=baselineLoadTestNumber%>" ><%=baselineLoadTestNumber%></option>
 		<%
 		        String[] tempTestNumList;
@@ -625,51 +625,10 @@
 					</select>
 				</div>
 				
-				<div class="col-sm-4 form-group text-center" style="font-size: 18px;">
-					<label class="text-danger">Type : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,document.getElementById('newCurrLoadTestNumber').value,this.value)" id="productType" name="productType">
-					   <option value="Overall" >Overall</option>
-		<%
-		        String[] tempTestNumList2;
-				String tempTestNum2="";
 				
-				String currLoadTestNew   = name;
-				String baseLoadTestNew   = baselineLoadTestNumber;
-				
-				if(session.getAttribute("currLoadTestNew")!=null&&session.getAttribute("baseLoadTestNew")!=null)
-				{
-					currLoadTestNew   = (String)session.getAttribute("currLoadTestNew");
-					baseLoadTestNew   = (String)session.getAttribute("baseLoadTestNew");
-				}
-				
-				File[] listOfCurrentFoldersAggregate      = new File(currDir+"\\"+currLoadTestNew+"_"+testValue+"\\AggregateReport").listFiles();
-				Arrays.sort(listOfCurrentFoldersAggregate);
-				File[] listOfBaselineFoldersAggregate      = new File(currDir+"\\"+baseLoadTestNew+"_"+testValue+"\\AggregateReport").listFiles();
-				Arrays.sort(listOfBaselineFoldersAggregate);
-				Set<File> hs1 = new TreeSet<>(Arrays.asList(listOfCurrentFoldersAggregate));
-				Set<File> hs2 = new TreeSet<>(Arrays.asList(listOfBaselineFoldersAggregate));
-				Set<String> allProductFile = new TreeSet<>();
-				for(File temphs1: hs1)
-					allProductFile.add(temphs1.getName().replace(".csv",""));
-				for(File temphs2: hs2)
-					allProductFile.add(temphs2.getName().replace(".csv",""));
-				for(String tempFile : allProductFile)
-						{
-							if(hs1.toString().contains(tempFile)&&hs2.toString().contains(tempFile))
-							{
-		%>
-				    <option value="<%=tempFile%>"><%=tempFile%></option>
-		<%			        }
-						}
-		%>
-					</select>
-					<h1>new Test curr Number : <%=currLoadTestNew%></h1>
-					<h1>new Test base Number : <%=baseLoadTestNew%></h1>
-				</div>
-				
-				<div class="col-sm-4 form-group text-center"  style="font-size: 18px;">
+				<div class="col-sm-6 form-group text-center"  style="font-size: 18px;">
 					<label class="text-center text-danger">Current Load Test : </label>
-					<select onchange="getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value,document.getElementById('productType').value);getProdType(document.getElementById('newBaselineLoadTestNumber').value,this.value)" id="newCurrLoadTestNumber" > 
+					<select onchange="getProdType(document.getElementById('newBaselineLoadTestNumber').value,this.value);getCompTable(document.getElementById('newBaselineLoadTestNumber').value,this.value,'Overall');" id="newCurrLoadTestNumber" > 
 					   <option value="<%=name%>"><%=name%></option>
 		<%
 		        String[] tempTestNumList1;
@@ -691,10 +650,13 @@
 		%>
 					</select>
 				</div>
-			</div>			
+			</div>
+
+				<div class="col-sm-1" id="prodDropdown" style="font-size:18px;margin-left:0px;margin-top:55px;padding-left:4px;float:left;position:fixed;"></div>	
+				
 				<div class="col-sm-offset-1 col-sm-10" id="comparisonTable"></div>
 				<script>
-			function getCompTable(baseTest,currTest,prodType) {
+					function getCompTable(baseTest,currTest,prodType) {
 				xhttp = new XMLHttpRequest();
 				xhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
@@ -704,12 +666,22 @@
 			xhttp.open("POST","GetComparisonTable3.jsp?baselineTest="+baseTest+"&name="+currTest+"&prodType="+prodType,true);
 			xhttp.send();
 			}
+			
 			function getProdType(baseTest,currTest) {
 				xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("prodDropdown").innerHTML = this.responseText;
+					}
+				};
 				xhttp.open("POST","GetProdType.jsp?baselineTest="+baseTest+"&name="+currTest,true);
 				xhttp.send();
 			}
-			window.onload=getCompTable(<%=baselineLoadTestNumber%>,<%=name%>,"Overall");
+			
+			window.onload=function() {
+								getProdType(<%=baselineLoadTestNumber%>,<%=name%>);
+								getCompTable(<%=baselineLoadTestNumber%>,<%=name%>,'Overall');
+							}
 				</script>
 		<%
 			}
