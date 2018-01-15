@@ -11,6 +11,7 @@
 
     <script>
         var testNumber = prompt("Please enter the load test number(eg. 1947)", "2148");
+		if(testNumber!=null)
         window.location = "home5.jsp?currLoadTestNumber=" + encodeURIComponent(testNumber);
     </script>
 </head>

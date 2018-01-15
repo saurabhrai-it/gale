@@ -1,7 +1,7 @@
 sampler_label,aggregate_report_count,average,aggregate_report_median,aggregate_report_90%_line,aggregate_report_min,aggregate_report_max,aggregate_report_error%,aggregate_report_rate,aggregate_report_bandwidth
-HTTP Request: Login AONE,26770,850,628,1400,181,10873,0.0,3.706979409993446,3251.424018804993
+HTTP Request: Login AONE,26770,1850,628,1400,181,10873,0.0,3.706979409993446,3251.424018804993
 HTTP Request: Login/ Ajax MarkList,26762,14,5,8,3,3217,0.0,3.709634403761033,0.6571368786584159
-HTTP Request: Search Assist,21026,46,27,89,6,3119,0.0,2.923436307087894,2.2941450279232245
+HTTP Request: Search Assist,21026,4546,27,89,6,3119,0.0,2.923436307087894,2.2941450279232245
 HTTP Request: Navigate To Subject Guide Search,2462,141,58,562,23,3058,0.0,0.3426669004929838,3.353283489530705
 HTTP Request: Navigate To Subject Guide Search / Ajax Marklist,2462,12,5,8,3,1049,0.0,0.34275835271616506,0.08564485848374953
 HTTP Request: Navigate Topic Finder,1229,174,60,257,14,3071,0.0,0.17116963035716376,11.679656282694932

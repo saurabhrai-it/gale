@@ -100,6 +100,8 @@
 							if(!overallResponseTimeBaseline.equals("-")&&!overallResponseTimeCurrent.equals("-"))
 							{
 								delta = String.format("%.03f", Float.parseFloat(overallResponseTimeCurrent)-Float.parseFloat(overallResponseTimeBaseline));
+								if(Float.parseFloat(delta)>0.5)
+									delta = "<span style='color:red;font-weight:600;'>"+delta+"</span>";
 							}
 			%>
 					<tr>
@@ -208,9 +210,9 @@
             <tbody>
 	 
 	 <%
-			FileReader fileReaderOverallBaseline         = new FileReader(currDir+"\\"+desiredCurrentFolder+"\\AggregateReport\\"+productType+".csv");
+			FileReader fileReaderOverallBaseline         = new FileReader(currDir+"\\"+desiredBaselineFolder+"\\AggregateReport\\"+productType+".csv");
             BufferedReader bufferedReaderOverallBaseline = new BufferedReader(fileReaderOverallBaseline);
-			FileReader fileReaderOverallCurrent         = new FileReader(currDir+"\\"+desiredBaselineFolder+"\\AggregateReport\\"+productType+".csv");
+			FileReader fileReaderOverallCurrent         = new FileReader(currDir+"\\"+desiredCurrentFolder+"\\AggregateReport\\"+productType+".csv");
             BufferedReader bufferedReaderOverallCurrent  = new BufferedReader(fileReaderOverallCurrent);
 			Set<String> allTransactionName = new TreeSet<>();
 			HashMap<String,String> baseTransactionName = new HashMap<String,String>();
@@ -268,6 +270,8 @@
 					if(!responseTimeBaseline.equals("-")&&!responseTimeCurrent.equals("-"))
 							{
 								deltaResponse = String.format("%.03f", Float.parseFloat(responseTimeCurrent)-Float.parseFloat(responseTimeBaseline));
+								if(Float.parseFloat(deltaResponse)>0.5)
+									deltaResponse = "<span style='color:red;font-weight:600;'>"+deltaResponse+"</span>";
 							}
 					%>
 					<tr>
@@ -295,6 +299,8 @@
 					if(!responseTimeBaseline.equals("-")&&!responseTimeCurrent.equals("-"))
 							{
 								deltaResponse = String.format("%.03f", Float.parseFloat(responseTimeCurrent)-Float.parseFloat(responseTimeBaseline));
+								if(Float.parseFloat(deltaResponse)>0.5)
+									deltaResponse = "<span style='color:red;font-weight:600;'>"+deltaResponse+"</span>";
 							}
 					%>
 					<tr>
