@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ page isErrorPage="true" %>
+<%@ page errorPage="index.jsp" %> 
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -10,9 +12,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <script>
-        var testNumber = prompt("Please enter the load test number(eg. 1947)", "2148");
+        var testNumber = prompt("Please enter the load test number(eg. 1947)", "2193");
 		if(testNumber!=null)
-        window.location = "home5.jsp?currLoadTestNumber=" + encodeURIComponent(testNumber);
+            window.location = "home7.jsp?currLoadTestNumber=" + encodeURIComponent(testNumber);
     </script>
 </head>
 </html>
