@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page errorPage="index.jsp" %> 
+<%@ page errorPage="errorIndex.jsp" %> 
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -569,22 +569,28 @@
 					<label>Please Enter Baseline Test Number : </label>
 					<select id="newCurrLoadTestNumber" >
 		<%
-		        String[] tempTestNumList1;
-				String tempTestNum1="";
+		        String[] tempTestNumList2;
+				String tempTestNum2="";
+				Set<String> sortedTempTest2 = new TreeSet<>();
 				for(int j=0; j < mainFolders.length;j++)
 				{
 					fileName = mainFolders[j].getName().toString();
 					if(fileName.endsWith(testValue))
 					{
-						tempTestNumList1 = fileName.split("_");
-						tempTestNum1 = tempTestNumList1[0];
-						if(!tempTestNum1.equals(name))
+						tempTestNumList2 = fileName.split("_");
+						tempTestNum2 = tempTestNumList2[0];
+						if(!tempTestNum2.equals(name))
 						{
-		%>
-				    <option value="<%=tempTestNum1%>"><%=tempTestNum1%></option>
-		<%			    }
+							sortedTempTest2.add(tempTestNum2);
+						}
 					}
-				}
+				}		
+				for(String tempStr1: sortedTempTest2)
+				{
+		%>
+					<option value="<%=tempStr1%>"><%=tempStr1%></option>
+		<%	
+				    }
 		%>
 					</select>
 				    <input type="Button" value = "Submit" onClick="saveBaselineNumber(newCurrLoadTestNumber.value)" />
@@ -608,6 +614,7 @@
 		<%
 		        String[] tempTestNumList;
 				String tempTestNum="";
+				Set<String> sortedTempTest = new TreeSet<>();
 				for(int j=0; j < mainFolders.length;j++)
 				{
 					fileName = mainFolders[j].getName().toString();
@@ -617,11 +624,16 @@
 						tempTestNum = tempTestNumList[0];
 						if(!tempTestNum.equals(baselineLoadTestNumber))
 						{
-		%>
-				    <option value="<%=tempTestNum%>"><%=tempTestNum%></option>
-		<%			    }
+							sortedTempTest.add(tempTestNum);
+						}
 					}
-				}
+				}		
+				for(String tempStr: sortedTempTest)
+				{
+		%>
+					<option value="<%=tempStr%>"><%=tempStr%></option>
+		<%	
+				    }
 		%>
 					</select>
 				</div>
@@ -634,6 +646,7 @@
 		<%
 		        String[] tempTestNumList1;
 				String tempTestNum1="";
+				Set<String> sortedTempTest1 = new TreeSet<>();
 				for(int j=0; j < mainFolders.length;j++)
 				{
 					fileName = mainFolders[j].getName().toString();
@@ -643,11 +656,16 @@
 						tempTestNum1 = tempTestNumList1[0];
 						if(!tempTestNum1.equals(name))
 						{
-		%>
-				    <option value="<%=tempTestNum1%>"><%=tempTestNum1%></option>
-		<%			    }
+							sortedTempTest1.add(tempTestNum1);
+						}
 					}
-				}
+				}		
+				for(String tempStr1: sortedTempTest1)
+				{
+		%>
+					<option value="<%=tempStr1%>"><%=tempStr1%></option>
+		<%	
+				    }
 		%>
 					</select>
 				</div>
